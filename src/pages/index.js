@@ -1,12 +1,11 @@
 import React from 'react'
 import Link from 'gatsby-link'
-
+import spacing from '~/src/settings/spacing'
+import { interUIStyles, vollkornStyles } from '~/src/settings/typography'
 const IndexPage = () => (
   <div>
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <Link to="/page-2/">Go to page 2</Link>
+    {interUIStyles.map((item, index) => (<p key={index} style={item}>Lorem ipsum</p>))}
+    {vollkornStyles.map((item, index) => (<p key={index} style={item}>Lorem ipsum</p>))}
   </div>
 )
 
