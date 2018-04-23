@@ -43,6 +43,7 @@ injectGlobal`
   }
 
   body {
+    margin: 0;
     ${vollkornStyles[0]}
   }
 `

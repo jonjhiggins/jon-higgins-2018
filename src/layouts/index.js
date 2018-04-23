@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 
+import BaselineGrid from '~/src/components/baseline-grid'
 import Typography from '~/src/components/typography'
 
 // Fonts
@@ -24,6 +25,7 @@ const Layout = ({ children, data }) => (
       <link rel="preload" href={vollkorn} as="font" type="font/woff2"/>
       <link rel="preload" href={vollkornBold} as="font" type="font/woff2"/>
     </Helmet>
+    <BaselineGrid/>
     {children()}
   </div>
 )

@@ -1,5 +1,6 @@
-const BASELINE = 16
 const BODY_FONT_SIZE = 16
+const BASELINE = 16
+const BASELINE_REM = BASELINE / BODY_FONT_SIZE
 
 // These sizes match the lowercase x-height of the font
 // to the pixel height of spacing values (settings/spacing.js)
@@ -75,8 +76,9 @@ const defaultStyle = {
 const mergeStyles = (newStyles, defaultKey) => {
   newStyles.fontSize = `${newStyles.fontSizeRaw / BODY_FONT_SIZE}rem`
   const lineHeight = newStyles.lineHeightRaw / newStyles.fontSizeRaw
+  delete newStyles.fontSizeRaw
+  delete newStyles.lineHeightRaw
   newStyles.lineHeight = `${Math.round(lineHeight * 1000) / 1000}`
-  console.log(defaultKey)
   return Object.assign({}, defaultStyle[defaultKey], newStyles)
 }
 
@@ -93,5 +95,9 @@ const vollkornStyles = VOLKORN_STYLES.map(item => mergeStyles(
 export {
   interUIStyles,
   vollkornStyles,
-  BODY_FONT_SIZE
+  BASELINE,
+  BASELINE_REM,
+  BODY_FONT_SIZE,
+  INTER_UI_STYLES,
+  VOLKORN_STYLES
 }
