@@ -4,23 +4,24 @@ import styled from 'react-emotion'
 import COLOURS from '~/src/settings/colours'
 import { BASELINE_REM } from '~/src/settings/typography'
 
-const BaselineGrid = styled('div')`
-  background: repeating-linear-gradient(${COLOURS.PRIMARY}, ${COLOURS.PRIMARY} 1px, transparent 1px, transparent ${BASELINE_REM}rem);
-  position: absolute;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  opacity: 0.3;
-
-  &::after {
-    content: '';
-    background: repeating-linear-gradient(black, black 1px, transparent 1px, transparent ${BASELINE_REM * 6}rem);
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    opacity: 0.5;
+/**
+ * Add a baseline grid to document or an individual component
+ * @type {ReactElement}
+ */
+const BaselineGrid = styled('div')(
+  {
+    position: 'absolute',
+    height: '100%',
+    width: '100%',
+    opacity: 0.3,
+  },
+  ({ lines = 1, colour = COLOURS.PRIMARY, top = 0 }) => {
+    return {
+      top,
+      background: `repeating-linear-gradient(${colour}, ${colour} 1px, transparent 1px, transparent ${BASELINE_REM *
+        lines}rem)`,
+    }
   }
-`
+)
 
 export default BaselineGrid
