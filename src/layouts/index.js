@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
+import styled from 'react-emotion'
 
 import BaselineGrid from '~/src/components/baseline-grid'
 import Typography from '~/src/components/typography'
@@ -11,8 +12,14 @@ import interUIBold from '~/src/fonts/Inter-UI-Bold.woff2'
 import vollkorn from '~/src/fonts/vollkorn.woff2'
 import vollkornBold from '~/src/fonts/vollkorn-bold.woff2'
 
+const App = styled('div')`
+  /* inline-block so that baseline-grid fills width of screen */
+  display: inline-block;
+  position: relative;
+`;
+
 const Layout = ({ children, data }) => (
-  <div>
+  <App>
     <Helmet
       title={data.site.siteMetadata.title}
       meta={[
@@ -27,7 +34,7 @@ const Layout = ({ children, data }) => (
     </Helmet>
     <BaselineGrid/>
     {children()}
-  </div>
+  </App>
 )
 
 Layout.propTypes = {

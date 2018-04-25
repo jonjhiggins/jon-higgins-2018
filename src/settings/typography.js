@@ -5,7 +5,8 @@ const BASELINE_REM = BASELINE / BODY_FONT_SIZE
 // These sizes match the lowercase x-height of the font
 // to the pixel height of spacing values (settings/spacing.js)
 // so need to be set manually.
-// Line-height just uses nearest baseline value that looks good
+// Line-height just uses nearest baseline value that looks good.
+// Padding is used to fix type to baseline`grid`
 const VOLKORN_STYLES = [
   {
     fontSizeRaw: 16,
@@ -33,37 +34,48 @@ const INTER_UI_STYLES = [
     fontSizeRaw: 11,
     lineHeightRaw: BASELINE * 1,
     letterSpacing: '0.125em',
-    textTransform: 'uppercase'
+    textTransform: 'uppercase',
+    padding: `${BASELINE_REM / 4}rem 0`,
+    marginBottom: `${BASELINE_REM / 2}rem`
   },
   {
     fontSizeRaw: 22,
     lineHeightRaw: BASELINE * 2,
+    padding: `${BASELINE_REM / 2}rem 0`,
+    marginBottom: `${BASELINE_REM / 2}rem`
   },
   {
     fontSizeRaw: 33,
     lineHeightRaw: BASELINE * 2.5,
+    marginBottom: `${BASELINE_REM * 2}rem`
   },
   {
     fontSizeRaw: 66,
-    lineHeightRaw: BASELINE * 4,
+    lineHeightRaw: BASELINE * 4.5,
+    padding: `${BASELINE_REM / 4}rem 0`,
+    marginBottom: `${BASELINE_REM * 4}rem`
   },
   {
     fontSizeRaw: 88,
     lineHeightRaw: BASELINE * 6,
+    marginBottom: `${BASELINE_REM * 4}rem`
   }
   ,
   {
-    fontSizeRaw: 192,
-    lineHeightRaw: BASELINE * 10,
+    fontSizeRaw: 198,
+    lineHeightRaw: BASELINE * 11,
+    marginBottom: `${BASELINE_REM * 4}rem`
   }
 ]
 
 const defaultStyle = {
   interUI: {
     fontFamily: 'Inter UI',
+    position: 'relative'
   },
   vollkorn: {
     fontFamily: 'Vollkorn',
+    position: 'relative'
   },
 }
 
@@ -74,12 +86,13 @@ const defaultStyle = {
  * @return {object}
  */
 const mergeStyles = (newStyles, defaultKey) => {
-  newStyles.fontSize = `${newStyles.fontSizeRaw / BODY_FONT_SIZE}rem`
-  const lineHeight = newStyles.lineHeightRaw / newStyles.fontSizeRaw
-  delete newStyles.fontSizeRaw
-  delete newStyles.lineHeightRaw
-  newStyles.lineHeight = `${Math.round(lineHeight * 1000) / 1000}`
-  return Object.assign({}, defaultStyle[defaultKey], newStyles)
+  const copyStyle = Object.assign({}, newStyles)
+  copyStyle.fontSize = `${newStyles.fontSizeRaw / BODY_FONT_SIZE}rem`
+  const lineHeight = copyStyle.lineHeightRaw / copyStyle.fontSizeRaw
+  delete copyStyle.fontSizeRaw
+  delete copyStyle.lineHeightRaw
+  copyStyle.lineHeight = `${Math.round(lineHeight * 1000000000) / 1000000000}`
+  return Object.assign({}, defaultStyle[defaultKey], copyStyle)
 }
 
 const interUIStyles = INTER_UI_STYLES.map(item => mergeStyles(
