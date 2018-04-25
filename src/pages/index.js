@@ -5,9 +5,19 @@ import styled from 'react-emotion'
 import BaselineGrid from '~/src/components/baseline-grid'
 import { spacingREM } from '~/src/settings/spacing'
 import { rem } from '~/src/utils'
-import { interUIStyles, vollkornStyles, BASELINE, BASELINE_REM, INTER_UI_STYLES } from '~/src/settings/typography'
+import {
+  interUIStyles,
+  vollkornStyles,
+  BASELINE,
+  BASELINE_REM,
+  INTER_UI_STYLES,
+  VOLLKORN_STYLES,
+} from '~/src/settings/typography'
 
-const styleBlocks = [interUIStyles, vollkornStyles]
+const styleBlocks = [
+  { block: interUIStyles, text: INTER_UI_STYLES, type: 'INTER_UI' },
+  { block: vollkornStyles, text: VOLLKORN_STYLES, type: 'VOLLKORN' },
+]
 
 const Wrapper = styled('div')`
   /* inline-block so that baseline-grid fills width of screen */
@@ -30,35 +40,55 @@ const Column = styled('li')`
   padding-top: ${rem(BASELINE - 2)};
 `
 
-const TYPEBLOCK_MARGINS = [
-  3.5 * BASELINE_REM, 3 * BASELINE_REM, 1.5 * BASELINE_REM, 0, BASELINE_REM
-]
-
-const TypeBlock = styled('div')({
-}, ({ index }) => {
-  const marginBottom = TYPEBLOCK_MARGINS[index];
-  return marginBottom ? { marginBottom: `${marginBottom}rem` } : {}
-});
-
-const TypeBlockP = styled('p')({
-  margin: 0,
-  whiteSpace: 'nowrap'
-},({newStyles, index}) => {
-  delete newStyles.marginBottom
-  newStyles.color = index === 5 ? 'rgba(0,0,0,0.1)' : undefined
-  return newStyles
+const TYPEBLOCK_MARGINS = {
+  INTER_UI: [
+    3.5 * BASELINE_REM,
+    3 * BASELINE_REM,
+    1.5 * BASELINE_REM,
+    0,
+    BASELINE_REM,
+  ],
+  VOLLKORN: [
+    2.5 * BASELINE_REM,
+    1 * BASELINE_REM,
+    0
+  ],
 }
+
+const TypeBlock = styled('div')({}, ({ index, type }) => {
+  const marginBottom = TYPEBLOCK_MARGINS[type][index]
+  return marginBottom ? { marginBottom: `${marginBottom}rem` } : {}
+})
+
+const TypeBlockP = styled('p')(
+  {
+    margin: 0,
+    whiteSpace: 'nowrap',
+  },
+  ({ newStyles, index }) => {
+    delete newStyles.marginBottom
+    newStyles.color = index === 5 ? 'rgba(0,0,0,0.1)' : undefined
+    return newStyles
+  }
 )
 
 const IndexPage = () => (
   <Wrapper>
-    <BaselineGrid lines={6} top={rem(BASELINE * 2)} colour={'rgba(0,0,0,0.25)'}/>
+    <BaselineGrid
+      lines={6}
+      top={rem(BASELINE * 2)}
+      colour={'rgba(0,0,0,0.25)'}
+    />
     <Columns>
-      {styleBlocks.map((block, index) => (
+      {styleBlocks.map(({ block, text, type }, index) => (
         <Column key={index}>
-          {block.map((item, childIndex) => (
-            <TypeBlock key={childIndex} index={childIndex}>
-              <TypeBlockP newStyles={item} index={childIndex}><b>{INTER_UI_STYLES[childIndex].fontSizeRaw}</b> / {INTER_UI_STYLES[childIndex].lineHeightRaw}</TypeBlockP>
+          {block.map((styles, childIndex) => (
+            <TypeBlock key={childIndex} index={childIndex} type={type}>
+              <TypeBlockP newStyles={styles} index={childIndex}>
+                {console.log(text)}
+                <b>{text[childIndex].fontSizeRaw}</b> /{' '}
+                {text[childIndex].lineHeightRaw}
+              </TypeBlockP>
             </TypeBlock>
           ))}
         </Column>

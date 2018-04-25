@@ -7,22 +7,24 @@ const BASELINE_REM = BASELINE / BODY_FONT_SIZE
 // so need to be set manually.
 // Line-height just uses nearest baseline value that looks good.
 // Padding is used to fix type to baseline`grid`
-const VOLKORN_STYLES = [
+const VOLLKORN_STYLES = [
   {
     fontSizeRaw: 16,
-    lineHeightRaw: BASELINE * 1.5,
+    lineHeightRaw: BASELINE * 1.5
   },
   {
     fontSizeRaw: 36,
     lineHeightRaw: BASELINE * 3,
+    padding: `${BASELINE_REM}rem 0`,
   },
   {
     fontSizeRaw: 52,
     lineHeightRaw: BASELINE * 4,
+    padding: `${BASELINE_REM / 4}rem 0`,
   },
   {
     fontSizeRaw: 104,
-    lineHeightRaw: BASELINE * 7,
+    lineHeightRaw: BASELINE * 6,
   }
 ]
 
@@ -100,7 +102,7 @@ const interUIStyles = INTER_UI_STYLES.map(item => mergeStyles(
   'interUI'
 ))
 
-const vollkornStyles = VOLKORN_STYLES.map(item => mergeStyles(
+const vollkornStyles = VOLLKORN_STYLES.map(item => mergeStyles(
   item,
   'vollkorn'
 ))
@@ -112,5 +114,5 @@ export {
   BASELINE_REM,
   BODY_FONT_SIZE,
   INTER_UI_STYLES,
-  VOLKORN_STYLES
+  VOLLKORN_STYLES
 }
