@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'react-emotion'
 
 import BaselineGrid from '~/src/components/baseline-grid'
+import Heading from '~/src/components/heading'
 import { spacingREM } from '~/src/settings/spacing'
 import { rem } from '~/src/utils'
 import {
@@ -14,20 +15,17 @@ import {
 } from '~/src/settings/typography'
 
 const styleBlocks = [
-  { block: interUIStyles, text: INTER_UI_STYLES, type: 'INTER_UI' },
   { block: vollkornStyles, text: VOLLKORN_STYLES, type: 'VOLLKORN' },
 ]
 
 const Wrapper = styled('div')`
-  /* inline-block so that baseline-grid fills width of screen */
-  display: inline-block;
   position: relative;
 `
 
 const Columns = styled('ul')`
   list-style: none;
   padding: 0;
-  margin: ${rem(BASELINE * 6)} ${rem(50)} 0;
+  margin: ${rem(BASELINE * 6)} 0 0;
   display: grid;
   grid-template-columns: repeat(2, ${rem(450)});
   grid-column-gap: ${rem(50)};
@@ -47,11 +45,7 @@ const TYPEBLOCK_MARGINS = {
     0,
     BASELINE_REM,
   ],
-  VOLLKORN: [
-    2.5 * BASELINE_REM,
-    1 * BASELINE_REM,
-    0
-  ],
+  VOLLKORN: [2.5 * BASELINE_REM, 1 * BASELINE_REM, 0],
 }
 
 const TypeBlock = styled('div')({}, ({ index, type }) => {
@@ -71,6 +65,28 @@ const TypeBlockP = styled('p')(
   }
 )
 
+const StyleguideTypographyColumn = ({
+  heading,
+  paragraph,
+  text,
+  type,
+  block,
+}) => (
+  <Column>
+    <Heading element={'h2'}>{heading}</Heading>
+    <Heading element={'p'} marginTop={-0.5} marginBottom={1.5} html={paragraph}></Heading>
+
+    {block.map((styles, childIndex) => (
+      <TypeBlock key={childIndex} index={childIndex} type={type}>
+        <TypeBlockP newStyles={styles} index={childIndex}>
+          <b>{text[childIndex].fontSizeRaw}</b> /{' '}
+          {text[childIndex].lineHeightRaw}
+        </TypeBlockP>
+      </TypeBlock>
+    ))}
+  </Column>
+)
+
 const StyleguideTypography = () => (
   <Wrapper>
     <BaselineGrid
@@ -79,19 +95,21 @@ const StyleguideTypography = () => (
       colour={'rgba(0,0,0,0.25)'}
     />
     <Columns>
-      {styleBlocks.map(({ block, text, type }, index) => (
-        <Column key={index}>
-          {block.map((styles, childIndex) => (
-            <TypeBlock key={childIndex} index={childIndex} type={type}>
-              <TypeBlockP newStyles={styles} index={childIndex}>
-                {console.log(text)}
-                <b>{text[childIndex].fontSizeRaw}</b> /{' '}
-                {text[childIndex].lineHeightRaw}
-              </TypeBlockP>
-            </TypeBlock>
-          ))}
-        </Column>
-      ))}
+      <StyleguideTypographyColumn
+        block={interUIStyles}
+        text={INTER_UI_STYLES}
+        type={'INTER_UI'}
+        heading={`TYPOGRAPHY: INTER UI (REGULAR + BOLD)`}
+        paragraph={`USE CAPS X-HEIGHT FOR ALIGNMENT <br />
+        -10% SPACING UNLESS OTHERWISE SPECIFIED`}
+      />
+      <StyleguideTypographyColumn
+        block={vollkornStyles}
+        text={VOLLKORN_STYLES}
+        type={'VOLLKORN'}
+        heading={`TYPOGRAPHY: VOLLKORN (REGULAR + BOLD)`}
+        paragraph={`USE LOWERCASE X-HEIGHT FOR ALIGNMENT<br/><br/>`}
+      />
     </Columns>
   </Wrapper>
 )
