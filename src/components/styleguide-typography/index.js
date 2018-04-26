@@ -27,7 +27,7 @@ const Columns = styled('ul')`
   padding: 0;
   margin: ${rem(BASELINE * 6)} 0 0;
   display: grid;
-  grid-template-columns: repeat(2, ${rem(450)});
+  grid-template-columns: repeat(2, ${rem(450)}) ${rem(190)};
   grid-column-gap: ${rem(50)};
 `
 
@@ -76,7 +76,7 @@ const StyleguideTypographyColumn = ({
     <Heading element={'h2'}>{heading}</Heading>
     <Heading element={'p'} marginTop={-0.5} marginBottom={1.5} html={paragraph}></Heading>
 
-    {block.map((styles, childIndex) => (
+    {block && block.map((styles, childIndex) => (
       <TypeBlock key={childIndex} index={childIndex} type={type}>
         <TypeBlockP newStyles={styles} index={childIndex}>
           <b>{text[childIndex].fontSizeRaw}</b> /{' '}
@@ -109,6 +109,10 @@ const StyleguideTypography = () => (
         type={'VOLLKORN'}
         heading={`TYPOGRAPHY: VOLLKORN (REGULAR + BOLD)`}
         paragraph={`USE LOWERCASE X-HEIGHT FOR ALIGNMENT<br/><br/>`}
+      />
+      <StyleguideTypographyColumn
+        heading={`SPACING`}
+        paragraph={`(n+2) * (n+2) - ((n+2) % 2)<br/>SKIPPING VALUES FOR 4, 7, 8, 9`}
       />
     </Columns>
   </Wrapper>
