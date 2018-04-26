@@ -3,7 +3,7 @@ import styled from 'react-emotion'
 
 import BaselineGrid from '~/src/components/baseline-grid'
 import Heading from '~/src/components/heading'
-import { spacingREM } from '~/src/settings/spacing'
+import { spacingREM, spacingRaw } from '~/src/settings/spacing'
 import { rem } from '~/src/utils'
 import {
   interUIStyles,
@@ -18,6 +18,8 @@ const styleBlocks = [
   { block: vollkornStyles, text: VOLLKORN_STYLES, type: 'VOLLKORN' },
 ]
 
+const circles = Object.keys(spacingRaw).map(key => spacingRaw[key]);
+
 const Wrapper = styled('div')`
   position: relative;
 `
@@ -29,6 +31,7 @@ const Columns = styled('ul')`
   display: grid;
   grid-template-columns: repeat(2, ${rem(450)}) ${rem(190)};
   grid-column-gap: ${rem(50)};
+  position: relative;
 `
 
 const Column = styled('li')`
@@ -46,6 +49,13 @@ const TYPEBLOCK_MARGINS = {
     BASELINE_REM,
   ],
   VOLLKORN: [2.5 * BASELINE_REM, 1 * BASELINE_REM, 0],
+  CIRCLES: [
+    3.5 * BASELINE_REM,
+    4 * BASELINE_REM,
+    3 * BASELINE_REM,
+    BASELINE_REM * 2,
+    BASELINE_REM * 3,
+  ],
 }
 
 const TypeBlock = styled('div')({}, ({ index, type }) => {
@@ -65,12 +75,29 @@ const TypeBlockP = styled('p')(
   }
 )
 
+const SpacingLine = styled('ul')({
+  display: 'flex',
+  listStyle: 'none',
+  padding: 0
+}, ({ value, index }) => ({
+  margin: `0 0 ${TYPEBLOCK_MARGINS.CIRCLES[index]}rem`
+}))
+
+const Circle = styled('li')({
+  borderRadius: '50%'
+}, ({ value, childIndex }) => ({
+  height: `${rem(value)}`,
+  width: `${rem(value)}`,
+  backgroundColor: `rgba(0, 0, 0, 0.5)`
+}))
+
 const StyleguideTypographyColumn = ({
   heading,
   paragraph,
   text,
   type,
   block,
+  circles
 }) => (
   <Column>
     <Heading element={'h2'}>{heading}</Heading>
@@ -83,6 +110,13 @@ const StyleguideTypographyColumn = ({
           {text[childIndex].lineHeightRaw}
         </TypeBlockP>
       </TypeBlock>
+    ))}
+
+    {circles && circles.map((value, childIndex) => (
+      <SpacingLine key={childIndex} value={value} index={childIndex}>
+        <Circle value={value} index={childIndex}></Circle>
+        <li><Heading element={'p'}>{value}</Heading></li>
+      </SpacingLine>
     ))}
   </Column>
 )
@@ -113,6 +147,7 @@ const StyleguideTypography = () => (
       <StyleguideTypographyColumn
         heading={`SPACING`}
         paragraph={`(n+2) * (n+2) - ((n+2) % 2)<br/>SKIPPING VALUES FOR 4, 7, 8, 9`}
+        circles={circles}
       />
     </Columns>
   </Wrapper>
