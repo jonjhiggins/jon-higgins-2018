@@ -78,6 +78,7 @@ const TypeBlockP = styled('p')(
 const SpacingLine = styled('ul')({
   display: 'flex',
   listStyle: 'none',
+  alignItems: 'flex-end',
   padding: 0
 }, ({ value, index }) => ({
   margin: `0 0 ${TYPEBLOCK_MARGINS.CIRCLES[index]}rem`
@@ -85,10 +86,10 @@ const SpacingLine = styled('ul')({
 
 const Circle = styled('li')({
   borderRadius: '50%'
-}, ({ value, childIndex }) => ({
+}, ({ value, index }) => ({
   height: `${rem(value)}`,
   width: `${rem(value)}`,
-  backgroundColor: `rgba(0, 0, 0, 0.5)`
+  backgroundColor: `rgba(0, 0, 0, ${0.5 - (0.1 * index)})`
 }))
 
 const StyleguideTypographyColumn = ({

@@ -35,7 +35,7 @@ const INTER_UI_STYLES = [
   {
     fontSizeRaw: 11,
     lineHeightRaw: BASELINE * 1,
-    letterSpacing: '0.125em',
+    letterSpacing: `${50 / 1000}em`, // 50% tracking = 0.05em
     textTransform: 'uppercase',
     padding: `${BASELINE_REM / 4}rem 0`,
     marginBottom: `${BASELINE_REM / 2}rem`
@@ -73,7 +73,8 @@ const INTER_UI_STYLES = [
 const defaultStyle = {
   interUI: {
     fontFamily: 'Inter UI',
-    position: 'relative'
+    position: 'relative',
+    letterSpacing: `-${10 / 1000}em`, // -10% tracking = 0.01em
   },
   vollkorn: {
     fontFamily: 'Vollkorn',
