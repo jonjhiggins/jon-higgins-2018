@@ -50,8 +50,8 @@ const TYPEBLOCK_MARGINS = {
   ],
   VOLLKORN: [2.5 * BASELINE_REM, 1 * BASELINE_REM, 0],
   CIRCLES: [
-    3.5 * BASELINE_REM,
-    4 * BASELINE_REM,
+    5 * BASELINE_REM,
+    4.5 * BASELINE_REM,
     3 * BASELINE_REM,
     BASELINE_REM * 2,
     BASELINE_REM * 3,
@@ -66,7 +66,7 @@ const TypeBlock = styled('div')({}, ({ index, type }) => {
 const TypeBlockP = styled('p')(
   {
     margin: 0,
-    whiteSpace: 'nowrap',
+    whiteSpace: 'nowrap'
   },
   ({ newStyles, index }) => {
     delete newStyles.marginBottom
@@ -79,17 +79,32 @@ const SpacingLine = styled('ul')({
   display: 'flex',
   listStyle: 'none',
   alignItems: 'flex-end',
-  padding: 0
-}, ({ value, index }) => ({
-  margin: `0 0 ${TYPEBLOCK_MARGINS.CIRCLES[index]}rem`
-}))
+  padding: 0,
+  '& li': {
+    flex: '0 1 50%'
+  },
+  '& p': {
+    padding: 0,
+    position: 'relative'
+  }
+}, ({ value, index }) => {
+  const padding = INTER_UI_STYLES[0].padding
+  return {
+    margin: `0 0 ${TYPEBLOCK_MARGINS.CIRCLES[index]}rem`,
+    '& p': {
+      top: padding ? padding.replace(' 0', '') : null,
+    }
+  }
+})
 
-const Circle = styled('li')({
-  borderRadius: '50%'
+const Circle = styled('div')({
+  borderRadius: '50%',
+  boxSizing: 'border-box'
 }, ({ value, index }) => ({
   height: `${rem(value)}`,
   width: `${rem(value)}`,
-  backgroundColor: `rgba(0, 0, 0, ${0.5 - (0.1 * index)})`
+  backgroundColor: `rgba(0, 0, 0, ${0.5 - (0.1 * index)})`,
+  border: index === 5 ? `${rem(2)} solid rgba(0, 0, 0, 0.1)` : null
 }))
 
 const StyleguideTypographyColumn = ({
@@ -115,7 +130,7 @@ const StyleguideTypographyColumn = ({
 
     {circles && circles.map((value, childIndex) => (
       <SpacingLine key={childIndex} value={value} index={childIndex}>
-        <Circle value={value} index={childIndex}></Circle>
+        <li><Circle value={value} index={childIndex}></Circle></li>
         <li><Heading element={'p'}>{value}</Heading></li>
       </SpacingLine>
     ))}
