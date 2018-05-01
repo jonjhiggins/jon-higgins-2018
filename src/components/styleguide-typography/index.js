@@ -99,7 +99,10 @@ const SpacingLine = styled('ul')({
 
 const Circle = styled('div')({
   borderRadius: '50%',
-  boxSizing: 'border-box'
+  boxSizing: 'border-box',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center'
 }, ({ value, index }) => ({
   height: `${rem(value)}`,
   width: `${rem(value)}`,
@@ -130,8 +133,14 @@ const StyleguideTypographyColumn = ({
 
     {circles && circles.map((value, childIndex) => (
       <SpacingLine key={childIndex} value={value} index={childIndex}>
-        <li><Circle value={value} index={childIndex}></Circle></li>
-        <li><Heading element={'p'}>{value}</Heading></li>
+        <li>
+          <Circle value={value} index={childIndex}>
+            {childIndex === 5 && <Heading element={'p'}>{value}</Heading>}
+          </Circle>
+        </li>
+        {childIndex !== 5 &&
+          <li><Heading element={'p'}>{value}</Heading></li>
+        }
       </SpacingLine>
     ))}
   </Column>
@@ -141,7 +150,7 @@ const StyleguideTypography = () => (
   <Wrapper>
     <BaselineGrid
       lines={6}
-      top={rem(BASELINE * 2)}
+      top={rem(BASELINE * 7)}
       colour={'rgba(0,0,0,0.25)'}
     />
     <Columns>
