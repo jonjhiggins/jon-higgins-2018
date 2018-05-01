@@ -15,6 +15,7 @@ import vollkornBold from '~/src/fonts/vollkorn-bold.woff2'
 const App = styled('div')`
   /* inline-block so that baseline-grid fills width of screen */
   display: inline-block;
+  width: 100%;
   position: relative;
 `;
 

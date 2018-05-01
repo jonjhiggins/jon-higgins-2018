@@ -24,14 +24,25 @@ const Wrapper = styled('div')`
   position: relative;
 `
 
+const col1 = 190
+const col2 = 450
+const gap = 50
+
 const Columns = styled('ul')`
   list-style: none;
   padding: 0;
   margin: ${rem(BASELINE * 6)} 0 0;
   display: grid;
-  grid-template-columns: repeat(2, ${rem(450)}) ${rem(190)};
-  grid-column-gap: ${rem(50)};
+  grid-column-gap: ${rem(gap)};
   position: relative;
+
+  @media (min-width: ${rem(450 + (BASELINE * 2))}) {
+    grid-template-columns: repeat(auto-fill, minmax(${rem(col2)}, 1fr));
+  }
+
+  @media (min-width: ${rem(1290)}) {
+    grid-template-columns: repeat(auto-fill, minmax(${rem(col2)}, 1fr)) ${rem(col1)};
+  }
 `
 
 const Column = styled('li')`
