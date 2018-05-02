@@ -24,7 +24,7 @@ const VOLLKORN_STYLES = [
   },
   {
     fontSizeRaw: 104,
-    lineHeightRaw: BASELINE * 6,
+    lineHeightRaw: BASELINE * 7,
   }
 ]
 
