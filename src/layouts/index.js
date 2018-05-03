@@ -4,6 +4,8 @@ import Helmet from 'react-helmet'
 import styled from 'react-emotion'
 
 import BaselineGrid from '~/src/components/baseline-grid'
+// eslint-disable-next-line no-unused-vars
+import Typography from '~/src/components/typography'
 
 // Fonts
 import interUI from '~/src/fonts/Inter-UI-Regular.woff2'
@@ -11,15 +13,8 @@ import interUIBold from '~/src/fonts/Inter-UI-Bold.woff2'
 import vollkorn from '~/src/fonts/vollkorn.woff2'
 import vollkornBold from '~/src/fonts/vollkorn-bold.woff2'
 
-const App = styled('div')`
-  /* inline-block so that baseline-grid fills width of screen */
-  display: inline-block;
-  width: 100%;
-  position: relative;
-`
-
 const Layout = ({ children, data }) => (
-  <App>
+  <div>
     <Helmet
       title={data.site.siteMetadata.title}
       meta={[
@@ -34,7 +29,7 @@ const Layout = ({ children, data }) => (
     </Helmet>
     <BaselineGrid />
     {children()}
-  </App>
+  </div>
 )
 
 Layout.propTypes = {

@@ -10,7 +10,7 @@ const BASELINE_REM = BASELINE / BODY_FONT_SIZE
 const VOLLKORN_STYLES = [
   {
     fontSizeRaw: 16,
-    lineHeightRaw: BASELINE * 1.5
+    lineHeightRaw: BASELINE * 1.5,
   },
   {
     fontSizeRaw: 36,
@@ -25,7 +25,7 @@ const VOLLKORN_STYLES = [
   {
     fontSizeRaw: 104,
     lineHeightRaw: BASELINE * 7,
-  }
+  },
 ]
 
 // These sizes match the caps height of the font
@@ -38,36 +38,38 @@ const INTER_UI_STYLES = [
     letterSpacing: `${50 / 1000}em`, // 50% tracking = 0.05em
     textTransform: 'uppercase',
     padding: `${BASELINE_REM / 4}rem 0`,
-    marginBottom: `${BASELINE_REM / 2}rem`
+    marginBottom: `${BASELINE_REM / 2}rem`,
   },
   {
     fontSizeRaw: 22,
     lineHeightRaw: BASELINE * 2,
     padding: `${BASELINE_REM / 2}rem 0`,
-    marginBottom: `${BASELINE_REM / 2}rem`
+    marginBottom: `${BASELINE_REM / 2}rem`,
   },
   {
     fontSizeRaw: 33,
     lineHeightRaw: BASELINE * 2.5,
-    marginBottom: `${BASELINE_REM * 2}rem`
+    padding: 0,
+    marginBottom: `${BASELINE_REM * 2}rem`,
   },
   {
     fontSizeRaw: 66,
     lineHeightRaw: BASELINE * 4.5,
     padding: `${BASELINE_REM / 4}rem 0`,
-    marginBottom: `${BASELINE_REM * 4}rem`
+    marginBottom: `${BASELINE_REM * 4}rem`,
   },
   {
     fontSizeRaw: 88,
     lineHeightRaw: BASELINE * 6,
-    marginBottom: `${BASELINE_REM * 4}rem`
-  }
-  ,
+    padding: 0,
+    marginBottom: `${BASELINE_REM * 4}rem`,
+  },
   {
     fontSizeRaw: 198,
     lineHeightRaw: BASELINE * 11,
-    marginBottom: `${BASELINE_REM * 4}rem`
-  }
+    padding: 0,
+    marginBottom: `${BASELINE_REM * 4}rem`,
+  },
 ]
 
 const defaultStyle = {
@@ -78,7 +80,7 @@ const defaultStyle = {
   },
   vollkorn: {
     fontFamily: 'Vollkorn',
-    position: 'relative'
+    position: 'relative',
   },
 }
 
@@ -98,15 +100,11 @@ const mergeStyles = (newStyles, defaultKey) => {
   return Object.assign({}, defaultStyle[defaultKey], copyStyle)
 }
 
-const interUIStyles = INTER_UI_STYLES.map(item => mergeStyles(
-  item,
-  'interUI'
-))
+const interUIStyles = INTER_UI_STYLES.map(item => mergeStyles(item, 'interUI'))
 
-const vollkornStyles = VOLLKORN_STYLES.map(item => mergeStyles(
-  item,
-  'vollkorn'
-))
+const vollkornStyles = VOLLKORN_STYLES.map(item =>
+  mergeStyles(item, 'vollkorn')
+)
 
 export {
   interUIStyles,
@@ -115,5 +113,5 @@ export {
   BASELINE_REM,
   BODY_FONT_SIZE,
   INTER_UI_STYLES,
-  VOLLKORN_STYLES
+  VOLLKORN_STYLES,
 }
