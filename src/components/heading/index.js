@@ -1,7 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'react-emotion'
 
-import BaselineGrid from '~/src/components/baseline-grid'
 import { rem } from '~/src/utils'
 import {
   interUIStyles,
@@ -33,6 +33,16 @@ const Heading = ({
   ) : (
     <HeadingElement>{children}</HeadingElement>
   )
+}
+
+Heading.propTypes = {
+  element: PropTypes.string,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  size: PropTypes.number,
+  type: PropTypes.oneOf(['INTER_UI', 'VOLKORN']),
+  marginTop: PropTypes.number,
+  marginBottom: PropTypes.number,
+  html: PropTypes.string,
 }
 
 export default Heading

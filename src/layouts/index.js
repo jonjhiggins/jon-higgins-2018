@@ -4,7 +4,6 @@ import Helmet from 'react-helmet'
 import styled from 'react-emotion'
 
 import BaselineGrid from '~/src/components/baseline-grid'
-import Typography from '~/src/components/typography'
 
 // Fonts
 import interUI from '~/src/fonts/Inter-UI-Regular.woff2'
@@ -17,7 +16,7 @@ const App = styled('div')`
   display: inline-block;
   width: 100%;
   position: relative;
-`;
+`
 
 const Layout = ({ children, data }) => (
   <App>
@@ -28,18 +27,19 @@ const Layout = ({ children, data }) => (
         { name: 'keywords', content: '@TODO' },
       ]}
     >
-      <link rel="preload" href={interUI} as="font" type="font/woff2"/>
-      <link rel="preload" href={interUIBold} as="font" type="font/woff2"/>
-      <link rel="preload" href={vollkorn} as="font" type="font/woff2"/>
-      <link rel="preload" href={vollkornBold} as="font" type="font/woff2"/>
+      <link rel="preload" href={interUI} as="font" type="font/woff2" />
+      <link rel="preload" href={interUIBold} as="font" type="font/woff2" />
+      <link rel="preload" href={vollkorn} as="font" type="font/woff2" />
+      <link rel="preload" href={vollkornBold} as="font" type="font/woff2" />
     </Helmet>
-    <BaselineGrid/>
+    <BaselineGrid />
     {children()}
   </App>
 )
 
 Layout.propTypes = {
   children: PropTypes.func,
+  data: PropTypes.object,
 }
 
 export default Layout

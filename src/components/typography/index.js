@@ -5,7 +5,7 @@ import interUIBold from '~/src/fonts/Inter-UI-Bold.woff2'
 import vollkorn from '~/src/fonts/vollkorn.woff2'
 import vollkornBold from '~/src/fonts/vollkorn-bold.woff2'
 
-import { interUIStyles, vollkornStyles, BODY_FONT_SIZE } from '~/src/settings/typography'
+import { vollkornStyles, BODY_FONT_SIZE } from '~/src/settings/typography'
 
 injectGlobal`
   @font-face {
