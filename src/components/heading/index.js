@@ -36,6 +36,9 @@ const Heading = ({
     marginBottom: rem(marginBottom * BASELINE),
     position: 'relative',
     fontWeight: light ? 'normal' : null,
+    '& > span': {
+      fontWeight: 'normal',
+    },
   }
 
   let combinedStyles = Object.assign({}, mainStyles, headingStyles)

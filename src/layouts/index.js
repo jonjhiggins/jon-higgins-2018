@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
-import styled from 'react-emotion'
 
 import BaselineGrid from '~/src/components/baseline-grid'
 // eslint-disable-next-line no-unused-vars
 import Typography from '~/src/components/typography'
+import SiteHeader from '~/src/components/site-header'
 
 // Fonts
 import interUI from '~/src/fonts/Inter-UI-Regular.woff2'
@@ -28,6 +28,7 @@ const Layout = ({ children, data }) => (
       <link rel="preload" href={vollkornBold} as="font" type="font/woff2" />
     </Helmet>
     <BaselineGrid />
+    <SiteHeader />
     {children()}
   </div>
 )
