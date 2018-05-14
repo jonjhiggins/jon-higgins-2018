@@ -48,13 +48,9 @@ const HeadingBackground = ({ element, children }) => (
   </Wrapper>
 )
 
-Heading.propTypes = {
+HeadingBackground.propTypes = {
   element: PropTypes.string,
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  type: PropTypes.oneOf(['INTER_UI', 'VOLKORN']),
-  marginTop: PropTypes.number,
-  marginBottom: PropTypes.number,
-  background: PropTypes.bool,
 }
 
 export default HeadingBackground

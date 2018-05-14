@@ -3,7 +3,7 @@ import styled from 'react-emotion'
 
 import BaselineGrid from '~/src/components/baseline-grid'
 import StyleguideTypographyColumn from '~/src/components/styleguide-typography-column'
-import { spacingRaw } from '~/src/settings/spacing'
+import { SPACING_RAW } from '~/src/settings/spacing'
 import { GRID_GUTTER_REM } from '~/src/settings/grid'
 import { rem } from '~/src/utils'
 import {
@@ -14,7 +14,7 @@ import {
   VOLLKORN_STYLES,
 } from '~/src/settings/typography'
 
-const circles = Object.keys(spacingRaw).map(key => spacingRaw[key])
+const circles = Object.keys(SPACING_RAW).map(key => SPACING_RAW[key])
 
 const Wrapper = styled('div')`
   position: relative;
@@ -67,7 +67,7 @@ const StyleguideTypography = () => (
       />
       <StyleguideTypographyColumn
         heading={`SPACING`}
-        paragraph={`<span style="text-transform: none">(n+2) * (n+2) - ((n+2) % 2)</span><br/>SKIPPING VALUES FOR 4, 7, 8, 9`}
+        paragraph={`<span style="text-transform: none">(n+2) * (n+2) - ((n+2) % 2)</span><br/>SKIPPING VALUES FOR 4, 8, 9`}
         circles={circles}
       />
     </Columns>

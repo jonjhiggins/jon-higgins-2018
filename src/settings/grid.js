@@ -1,11 +1,11 @@
-import { spacingRaw } from '~/src/settings/spacing'
+import { SPACING_RAW } from '~/src/settings/spacing'
 import { rem } from '~/src/utils'
 
 // http://gridcalculator.dk/#/1248/5/48/48
 
 const GRID_GUTTER = {
-  S: spacingRaw[3],
-  L: spacingRaw[4],
+  S: SPACING_RAW[3],
+  L: SPACING_RAW[4],
 }
 
 const GRID_GUTTER_REM = {

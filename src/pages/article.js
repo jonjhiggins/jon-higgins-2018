@@ -31,7 +31,7 @@ const Article = styled('div')`
   border: ${rem(2)} solid ${COLOURS.PRIMARY};
   padding-top: ${rem(BASELINE * 15 - 2)};
   padding-bottom: ${rem(BASELINE * 11)};
-  margin-top: -${rem(BASELINE * 7)};
+  margin-top: -${rem(BASELINE * 5.5)};
   margin-bottom: ${rem(BASELINE * 4)};
   ${BREAKPOINTS.L_MIN} {
     grid-column: 1 / 5;
@@ -53,7 +53,7 @@ const IndexPage = () => (
       Propre, ouvert, intelligent.
     </HeadingBackground>
     <Shift>
-      <Heading element={'h2'} sizeS={2} sizeL={5} marginBottom={0} light={true}>
+      <Heading element={'h2'} sizeS={2} sizeL={4} marginBottom={0} light={true}>
         Comprendre les enquêtes de laboratoire
       </Heading>
     </Shift>
@@ -80,7 +80,7 @@ const IndexPage = () => (
             ipsum primis in faucibus.
           </p>
 
-          <Heading element={'h3'} sizeS={2} sizeL={4}>
+          <Heading element={'h3'} sizeS={2} sizeL={3}>
             Comprendre les enquêtes de laboratoire.
           </Heading>
           <p>

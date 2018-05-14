@@ -14,6 +14,7 @@ const BaselineGrid = styled('div')(
     width: '100%',
     opacity: 0.3,
     zIndex: 1000,
+    pointerEvents: 'none',
   },
   ({ lines = 1, colour = COLOURS.PRIMARY, top = 0 }) => {
     return {

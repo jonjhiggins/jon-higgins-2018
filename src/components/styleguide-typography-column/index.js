@@ -23,7 +23,8 @@ const TYPEBLOCK_MARGINS = {
     3 * BASELINE_REM,
     1.5 * BASELINE_REM,
     0,
-    BASELINE_REM,
+    BASELINE_REM * 1,
+    BASELINE_REM * 2,
   ],
   VOLLKORN: [2.5 * BASELINE_REM, 1 * BASELINE_REM, 0.5 * BASELINE_REM],
   CIRCLES: [
@@ -32,6 +33,7 @@ const TYPEBLOCK_MARGINS = {
     3 * BASELINE_REM,
     BASELINE_REM * 2,
     BASELINE_REM * 3,
+    BASELINE_REM * 4,
   ],
 }
 
@@ -46,9 +48,9 @@ const TypeBlockP = styled('p')(
     margin: 0,
     whiteSpace: 'nowrap',
   },
-  ({ newStyles, index }) => {
+  ({ newStyles, index, last }) => {
     delete newStyles.marginBottom
-    newStyles.color = index === 5 ? 'rgba(0,0,0,0.1)' : undefined
+    newStyles.color = last ? 'rgba(0,0,0,0.1)' : undefined
     return newStyles
   }
 )
@@ -90,11 +92,11 @@ const Circle = styled('div')(
     alignItems: 'center',
     justifyContent: 'center',
   },
-  ({ value, index }) => ({
+  ({ value, index, last }) => ({
     height: `${rem(value)}`,
     width: `${rem(value)}`,
-    backgroundColor: `rgba(0, 0, 0, ${0.5 - 0.1 * index})`,
-    border: index === 5 ? `${rem(2)} solid rgba(0, 0, 0, 0.1)` : null,
+    backgroundColor: last ? undefined : `rgba(0, 0, 0, ${0.25})`,
+    border: last ? `${rem(2)} solid ${COLOURS.PRIMARY}` : null,
   })
 )
 
@@ -118,7 +120,11 @@ const StyleguideTypographyColumn = ({
     {block &&
       block.map((styles, childIndex) => (
         <TypeBlock key={childIndex} index={childIndex} type={type}>
-          <TypeBlockP newStyles={styles} index={childIndex}>
+          <TypeBlockP
+            newStyles={styles}
+            index={childIndex}
+            last={childIndex === block.length - 1}
+          >
             <b>{text[childIndex].fontSizeRaw}</b> /{' '}
             {text[childIndex].lineHeightRaw}{' '}
             <TypeBlockPX>{type === 'INTER_UI' ? 'X' : 'x'}</TypeBlockPX>
@@ -130,11 +136,17 @@ const StyleguideTypographyColumn = ({
       circles.map((value, childIndex) => (
         <SpacingLine key={childIndex} value={value} index={childIndex}>
           <li>
-            <Circle value={value} index={childIndex}>
-              {childIndex === 5 && <Heading element={'p'}>{value}</Heading>}
+            <Circle
+              value={value}
+              index={childIndex}
+              last={childIndex === circles.length - 1}
+            >
+              {childIndex === circles.length - 1 && (
+                <Heading element={'p'}>{value}</Heading>
+              )}
             </Circle>
           </li>
-          {childIndex !== 5 && (
+          {childIndex !== circles.length - 1 && (
             <li>
               <Heading element={'p'}>{value}</Heading>
             </li>

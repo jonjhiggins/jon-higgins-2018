@@ -65,6 +65,12 @@ const INTER_UI_STYLES = [
     marginBottom: `${BASELINE_REM * 4}rem`,
   },
   {
+    fontSizeRaw: 108,
+    lineHeightRaw: BASELINE * 7,
+    padding: 0,
+    marginBottom: `${BASELINE_REM * 4}rem`,
+  },
+  {
     fontSizeRaw: 198,
     lineHeightRaw: BASELINE * 11,
     padding: 0,
