@@ -67,7 +67,7 @@ const StyleguideTypography = () => (
       />
       <StyleguideTypographyColumn
         heading={`SPACING`}
-        paragraph={`(n+2) * (n+2) - ((n+2) % 2)<br/>SKIPPING VALUES FOR 4, 7, 8, 9`}
+        paragraph={`<span style="text-transform: none">(n+2) * (n+2) - ((n+2) % 2)</span><br/>SKIPPING VALUES FOR 4, 7, 8, 9`}
         circles={circles}
       />
     </Columns>

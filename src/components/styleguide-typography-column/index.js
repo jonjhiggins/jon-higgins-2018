@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 
 import Heading from '~/src/components/heading'
 import { rem } from '~/src/utils'
+import COLOURS from '~/src/settings/colours'
 import {
   BASELINE,
   BASELINE_REM,
@@ -51,6 +52,10 @@ const TypeBlockP = styled('p')(
     return newStyles
   }
 )
+
+const TypeBlockPX = styled('span')`
+  color: ${COLOURS.PRIMARY};
+`
 
 const SpacingLine = styled('ul')(
   {
@@ -115,7 +120,8 @@ const StyleguideTypographyColumn = ({
         <TypeBlock key={childIndex} index={childIndex} type={type}>
           <TypeBlockP newStyles={styles} index={childIndex}>
             <b>{text[childIndex].fontSizeRaw}</b> /{' '}
-            {text[childIndex].lineHeightRaw}
+            {text[childIndex].lineHeightRaw}{' '}
+            <TypeBlockPX>{type === 'INTER_UI' ? 'X' : 'x'}</TypeBlockPX>
           </TypeBlockP>
         </TypeBlock>
       ))}
