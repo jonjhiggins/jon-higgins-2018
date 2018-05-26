@@ -12,6 +12,7 @@ import {
 } from '~/src/settings/typography'
 import { rem } from '~/src/utils'
 import COLOURS from '~/src/settings/colours'
+import Z_INDEX from '~/src/settings/z-index'
 
 const BORDER_WIDTH = 2
 
@@ -47,45 +48,53 @@ const Description = styled('div')`
     grid-column: 1 / 3;
   }
 `
-
-const Navigation = styled('nav')`
-  position: fixed;
-  box-sizing: border-box;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  max-width: 100vw;
-  max-height: 100vh;
-  background-color: ${COLOURS.WHITE};
-  z-index: 5000;
-  transform: translateX(-100%);
-  padding: ${rem(BASELINE * 3)} ${GRID_GUTTER_REM.S};
-  display: flex;
-  align-items: center;
-
-  ${BREAKPOINTS.L_MIN} {
-    grid-column: 3 / 6;
-    position: relative;
+const Navigation = styled('nav')(
+  {
+    [BREAKPOINTS.S_MAX]: {
+      transition: '400ms transform ease-out',
+      position: 'fixed',
+      boxSizing: 'border-box',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      display: 'flex',
+      alignItems: 'center',
+      backgroundColor: `${COLOURS.WHITE}`,
+      padding: `${rem(BASELINE * 3)} ${GRID_GUTTER_REM.S}`,
+      zIndex: `${Z_INDEX.NAV_OPEN}`,
+    },
+    [BREAKPOINTS.L_MIN]: {
+      gridColumn: '3 / 6',
+      position: 'relative',
+    },
+    '& > ul': {
+      listStyle: 'none',
+      margin: 0,
+      padding: 0,
+      flex: '0 1 100%',
+    },
+    '& li': {
+      margin: `0 0 ${rem(BASELINE)}`,
+      padding: 0,
+      height: `${rem(54)}`,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      border: `${rem(2)} solid ${COLOURS.GREY}`,
+      transform: 'translateX(0)',
+    },
+  },
+  ({ open }) => {
+    return {
+      [BREAKPOINTS.S_MAX]: {
+        transform: open ? 'translateX(0)' : 'translateX(-100%)',
+      },
+    }
   }
-
-  & > ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    flex: 0 1 100%;
-  }
-
-  & li {
-    margin: 0 0 ${rem(BASELINE)};
-    padding: 0;
-    height: ${rem(54)};
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: ${rem(2)} solid ${COLOURS.GREY};
-  }
-`
+)
 
 const NavToggleButton = styled('button')({
   ...interUIStyles[0],
@@ -93,8 +102,11 @@ const NavToggleButton = styled('button')({
   position: 'absolute',
   top: `${BASELINE_REM}rem`,
   left: GRID_GUTTER_REM.S,
-  backgroundColor: COLOURS.WHITE,
-  '& span': {},
+  backgroundColor: 'transparent',
+  zIndex: `${Z_INDEX.NAV_OPEN + 1}`,
+  [BREAKPOINTS.L_MIN]: {
+    display: 'none;',
+  },
 })
 
 const BurgerIcons = styled('span')`
@@ -110,9 +122,9 @@ const BurgerIcons = styled('span')`
     width: 100%;
     height: ${rem(2)};
     background-color: ${COLOURS.BLACK};
+    opacity: 0.3;
     position: absolute;
     left: 0;
-    opacity: 0.3;
   }
   span {
     top: 50%;
@@ -137,11 +149,17 @@ class SiteHeader extends React.Component {
       navOpen: false,
     }
   }
+  handleNavToggleClick() {
+    this.setState({ navOpen: !this.state.navOpen })
+  }
   render() {
     return (
       <Header>
         <Grid>
-          <NavToggleButton type="button">
+          <NavToggleButton
+            type="button"
+            onClick={this.handleNavToggleClick.bind(this)}
+          >
             <BurgerIcons>
               <span />
             </BurgerIcons>
@@ -155,7 +173,7 @@ class SiteHeader extends React.Component {
               html={`Jon Higgins <span>&#x2011; Melbourne-based front&#x2011;end developer</span>`}
             />
           </Description>
-          <Navigation>
+          <Navigation open={this.state.navOpen}>
             <Grid element={'ul'} cols={3}>
               {links.map(({ name, link }, index) => (
                 <li key={index}>
