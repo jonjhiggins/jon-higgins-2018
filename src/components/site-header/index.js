@@ -97,6 +97,10 @@ const Navigation = styled('nav')(
         width: '100%',
         color: 'inherit',
         textDecoration: 'none',
+        transition: '400ms border-color ease, 400ms border-style ease',
+        '&:hover': {
+          borderColor: `${COLOURS.PRIMARY}`,
+        },
       },
     },
   },
