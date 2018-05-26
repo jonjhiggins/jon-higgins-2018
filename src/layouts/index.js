@@ -8,10 +8,10 @@ import Typography from '~/src/components/typography'
 import SiteHeader from '~/src/components/site-header'
 
 // Fonts
-import interUI from '~/src/fonts/Inter-UI-Regular.woff2'
-import interUIBold from '~/src/fonts/Inter-UI-Bold.woff2'
-import vollkorn from '~/src/fonts/vollkorn.woff2'
-import vollkornBold from '~/src/fonts/vollkorn-bold.woff2'
+// import interUI from '~/src/fonts/Inter-UI-Regular.woff2'
+// import interUIBold from '~/src/fonts/Inter-UI-Bold.woff2'
+// import vollkorn from '~/src/fonts/vollkorn.woff2'
+// import vollkornBold from '~/src/fonts/vollkorn-bold.woff2'
 
 const Layout = ({ children, data }) => (
   <div>
@@ -22,10 +22,10 @@ const Layout = ({ children, data }) => (
         { name: 'keywords', content: '@TODO' },
       ]}
     >
-      <link rel="preload" href={interUI} as="font" type="font/woff2" />
+      {/* <link rel="preload" href={interUI} as="font" type="font/woff2" />
       <link rel="preload" href={interUIBold} as="font" type="font/woff2" />
       <link rel="preload" href={vollkorn} as="font" type="font/woff2" />
-      <link rel="preload" href={vollkornBold} as="font" type="font/woff2" />
+      <link rel="preload" href={vollkornBold} as="font" type="font/woff2" /> */}
     </Helmet>
     <BaselineGrid />
     <SiteHeader
