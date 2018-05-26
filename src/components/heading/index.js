@@ -39,6 +39,9 @@ const Heading = ({
     '& > span': {
       fontWeight: 'normal',
     },
+    'a.active > &': {
+      fontWeight: 'bold', // site-header links active state
+    },
   }
 
   let combinedStyles = Object.assign({}, mainStyles, headingStyles)

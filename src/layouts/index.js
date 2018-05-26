@@ -28,7 +28,10 @@ const Layout = ({ children, data }) => (
       <link rel="preload" href={vollkornBold} as="font" type="font/woff2" />
     </Helmet>
     <BaselineGrid />
-    <SiteHeader />
+    <SiteHeader
+      titleHTML={data.site.siteMetadata.titleHTML}
+      navLinks={data.site.navLinks}
+    />
     {children()}
   </div>
 )
@@ -45,6 +48,7 @@ export const query = graphql`
     site {
       siteMetadata {
         title
+        titleHTML
       }
     }
   }

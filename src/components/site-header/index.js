@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'react-emotion'
+import PropTypes from 'prop-types'
+import Link from 'gatsby-link'
 
 import Heading from '~/src/components/heading'
 import Grid from '~/src/components/grid'
@@ -44,6 +46,11 @@ const Description = styled('div')`
   border-top: ${rem(BORDER_WIDTH)} solid ${COLOURS.GREY};
   padding-top: ${rem(BASELINE - BORDER_WIDTH)};
 
+  & a {
+    text-decoration: none;
+    color: inherit;
+  }
+
   ${BREAKPOINTS.L_MIN} {
     grid-column: 1 / 3;
   }
@@ -80,11 +87,17 @@ const Navigation = styled('nav')(
       margin: `0 0 ${rem(BASELINE)}`,
       padding: 0,
       height: `${rem(54)}`,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      border: `${rem(2)} solid ${COLOURS.GREY}`,
       transform: 'translateX(0)',
+      '& a': {
+        border: `${rem(2)} solid ${COLOURS.GREY}`,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100%',
+        width: '100%',
+        color: 'inherit',
+        textDecoration: 'none',
+      },
     },
   },
   ({ open }) => {
@@ -142,6 +155,11 @@ const BurgerIcons = styled('span')`
   }
 `
 
+const activeNavLink = {
+  fontWeight: 'bold',
+  border: `${rem(BORDER_WIDTH)} dashed ${COLOURS.PRIMARY}`,
+}
+
 class SiteHeader extends React.Component {
   constructor() {
     super()
@@ -166,20 +184,24 @@ class SiteHeader extends React.Component {
             {this.state.navOpen ? 'Close' : 'Menu'}
           </NavToggleButton>
           <Description>
-            <Heading
-              element={'h1'}
-              marginBottom={0.5}
-              size={1}
-              html={`Jon Higgins <span>&#x2011; Melbourne-based front&#x2011;end developer</span>`}
-            />
+            <Link to="/">
+              <Heading
+                element={'h1'}
+                marginBottom={0.5}
+                size={1}
+                html={this.props.titleHTML}
+              />
+            </Link>
           </Description>
           <Navigation open={this.state.navOpen}>
             <Grid element={'ul'} cols={3}>
               {links.map(({ name, link }, index) => (
                 <li key={index}>
-                  <Heading element={'h3'} size={1}>
-                    {name}
-                  </Heading>
+                  <Link to={link} activeStyle={activeNavLink}>
+                    <Heading element={'h3'} size={1} light={true}>
+                      {name}
+                    </Heading>
+                  </Link>
                 </li>
               ))}
             </Grid>
@@ -188,6 +210,10 @@ class SiteHeader extends React.Component {
       </Header>
     )
   }
+}
+
+SiteHeader.propTypes = {
+  titleHTML: PropTypes.string,
 }
 
 export default SiteHeader
