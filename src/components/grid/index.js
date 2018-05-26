@@ -18,7 +18,12 @@ const Grid = ({ element, cols, children }) => {
 
 Grid.propTypes = {
   element: PropTypes.string,
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
   cols: PropTypes.number,
 }
 
