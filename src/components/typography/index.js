@@ -14,6 +14,7 @@ injectGlobal`
     font-weight: 400;
     src: url(${vollkorn}) format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    font-display: swap;
   }
 
   @font-face {
@@ -22,6 +23,7 @@ injectGlobal`
     font-weight: 700;
     src: url(${vollkornBold}) format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    font-display: swap;
   }
 
   @font-face {
@@ -29,6 +31,7 @@ injectGlobal`
     font-style: normal;
     font-weight: 400;
     src: url(${interUI}) format('woff2');
+    font-display: swap;
   }
 
   @font-face {
@@ -36,6 +39,7 @@ injectGlobal`
     font-style: normal;
     font-weight: 700;
     src: url(${interUIBold}) format('woff2');
+    font-display: swap;
   }
 
   html {

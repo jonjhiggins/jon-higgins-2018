@@ -142,20 +142,26 @@ const BurgerIcons = styled('span')`
     opacity: 0.3;
     position: absolute;
     left: 0;
+    transition: transform 400ms ease;
   }
   span {
     top: 50%;
     transform: translate(${rem(-4)}, -50%);
     height: ${rem(2)};
     width: calc(100% + ${rem(4)});
+    display: ${({ open }) => (open ? 'none' : 'block')};
   }
   &::before {
     content: '';
     top: 0;
+    transform: ${({ open }) =>
+      open ? `translateY(${rem(3)}) rotate(45deg)` : 'none'};
   }
   &::after {
     content: '';
     bottom: 0;
+    transform: ${({ open }) =>
+      open ? `translateY(${rem(-3)}) rotate(-45deg)` : 'none'};
   }
 `
 
@@ -182,7 +188,7 @@ class SiteHeader extends React.Component {
             type="button"
             onClick={this.handleNavToggleClick.bind(this)}
           >
-            <BurgerIcons>
+            <BurgerIcons open={this.state.navOpen}>
               <span />
             </BurgerIcons>
             {this.state.navOpen ? 'Close' : 'Menu'}
