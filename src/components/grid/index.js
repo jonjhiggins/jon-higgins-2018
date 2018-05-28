@@ -5,15 +5,23 @@ import PropTypes from 'prop-types'
 import { BREAKPOINTS } from '~/src/settings/breakpoints'
 import { GRID_GUTTER_REM } from '~/src/settings/grid'
 
-const Grid = ({ element, cols, children }) => {
-  const GridElement = styled(element)`
-    ${BREAKPOINTS.L_MIN} {
-      display: grid;
-      grid-template-columns: repeat(${cols}, 1fr);
-      grid-gap: ${GRID_GUTTER_REM.L};
-    }
-  `
-  return <GridElement>{children}</GridElement>
+const GridElement = styled('ul')`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  ${BREAKPOINTS.L_MIN} {
+    display: grid;
+    grid-template-columns: repeat(${props => props.cols}, 1fr);
+    grid-gap: ${GRID_GUTTER_REM.L};
+  }
+`
+
+class Grid extends React.Component {
+  render() {
+    return (
+      <GridElement cols={this.props.cols}>{this.props.children}</GridElement>
+    )
+  }
 }
 
 Grid.propTypes = {
