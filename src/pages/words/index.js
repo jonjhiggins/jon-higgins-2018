@@ -1,13 +1,13 @@
 import React from 'react'
-import PageWrapper from '~/src/components/pageWrapper'
-import Heading from '~/src/components/heading'
+import PropTypes from 'prop-types'
+import Page from '~/src/components/page'
 
-const Page = () => (
-  <PageWrapper>
-    <Heading element={'h1'} marginTop={6} marginBottom={6} size={4}>
-      Words
-    </Heading>
-  </PageWrapper>
+const ThisPage = ({ transition }) => (
+  <Page transition={transition} heading={'Words'} />
 )
 
-export default Page
+ThisPage.propTypes = {
+  transition: PropTypes.object,
+}
+
+export default ThisPage
