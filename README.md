@@ -1,5 +1,5 @@
 # jon-higgins-2018
-Portfolio site based on [Gatsby](https://www.gatsbyjs.org/).
+Portfolio site build using React/GraphQL-based [Gatsby](https://www.gatsbyjs.org/), with [Emotion.js](https://emotion.sh/) for styles.
 
 ## Install
 
