@@ -1,8 +1,8 @@
 ---
-title: A freelance / contract front-end developer based in Melbourne.
+title: A front-end developer based in Melbourne.
 ---
 
-### Contact / Hire me
+### Contact me
 
 You can get hold of me via [email](mailto:jon@jonhiggins.co.uk), [Twitter](https://twitter.com/jonjhiggins) or [LinkedIn](http://uk.linkedin.com/pub/jon-higgins/44/73/a10).
 

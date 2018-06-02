@@ -1,13 +1,44 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import Page from '~/src/components/page'
 
-const ThisPage = ({ transition }) => (
-  <Page transition={transition} heading={'Who'} />
-)
+/**
+ * Section listing page for words articles
+ * @param {object} data [description]
+ */
+export default function Section({
+  data: {
+    markdownRemark: {
+      html,
+      frontmatter: { title },
+    },
+  },
+  transition,
+}) {
+  return (
+    <Page transition={transition} heading={title}>
+      <div dangerouslySetInnerHTML={{ __html: html }} />
+    </Page>
+  )
+}
 
-ThisPage.propTypes = {
+Section.propTypes = {
+  data: PropTypes.shape({
+    allMarkdownRemark: PropTypes.shape({
+      edges: PropTypes.array,
+    }),
+  }),
   transition: PropTypes.object,
 }
 
-export default ThisPage
+export const pageQuery = graphql`
+  query GetWhoPost {
+    markdownRemark(fileAbsolutePath: { eq: "src/data/who/who.md" }) {
+      html
+      frontmatter {
+        title
+      }
+    }
+  }
+`
