@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Page from '~/src/components/page'
+import PageWrapper from '~/src/components/pageWrapper'
 
 /**
  * Section listing page for words articles
@@ -17,9 +17,9 @@ export default function Section({
   transition,
 }) {
   return (
-    <Page transition={transition} heading={title}>
+    <PageWrapper transition={transition} heading={title}>
       <div dangerouslySetInnerHTML={{ __html: html }} />
-    </Page>
+    </PageWrapper>
   )
 }
 

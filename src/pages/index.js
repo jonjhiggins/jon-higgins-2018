@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Page from '~/src/components/page'
+import PageWrapper from '~/src/components/pageWrapper'
 
 const ThisPage = ({ transition }) => (
-  <Page transition={transition} heading={'Home'} />
+  <PageWrapper transition={transition} heading={'Home'} />
 )
 
 ThisPage.propTypes = {

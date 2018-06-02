@@ -2,12 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 
-import Page from '~/src/components/page'
+import PageWrapper from '~/src/components/pageWrapper'
 import getSitePath from '~/src/utils/getSitePath'
 
 export default function Template({ transition, items, heading }) {
   return (
-    <Page transition={transition} heading={heading}>
+    <PageWrapper transition={transition} heading={heading}>
       {items.map(({ node }, index) => {
         const { frontmatter, fileAbsolutePath } = node
         return (
@@ -16,7 +16,7 @@ export default function Template({ transition, items, heading }) {
           </p>
         )
       })}
-    </Page>
+    </PageWrapper>
   )
 }
 
