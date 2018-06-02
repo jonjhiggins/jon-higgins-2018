@@ -17,15 +17,15 @@ const BORDER_WIDTH = 2
 const links = [
   {
     name: 'Work',
-    link: 'work',
+    link: '/work',
   },
   {
     name: 'Words',
-    link: 'words',
+    link: '/words',
   },
   {
     name: 'Work',
-    link: 'who',
+    link: '/who',
   },
 ]
 
