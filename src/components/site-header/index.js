@@ -108,9 +108,15 @@ class SiteHeader extends React.Component {
     this.state = {
       navOpen: false,
     }
+    this.events = {
+      handleMenuClick: this.handleMenuClick.bind(this),
+    }
   }
   handleNavToggleClick() {
     this.setState({ navOpen: !this.state.navOpen })
+  }
+  handleMenuClick() {
+    this.setState({ navOpen: false })
   }
   render() {
     return (
@@ -138,7 +144,10 @@ class SiteHeader extends React.Component {
             </Description>
           </DescriptionLi>
           <NavLi>
-            <Navigation open={this.state.navOpen} />
+            <Navigation
+              open={this.state.navOpen}
+              handleMenuClick={this.events.handleMenuClick}
+            />
           </NavLi>
         </Grid>
       </Header>

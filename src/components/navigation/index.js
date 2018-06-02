@@ -24,7 +24,7 @@ const links = [
     link: '/words',
   },
   {
-    name: 'Work',
+    name: 'Who',
     link: '/who',
   },
 ]
@@ -112,7 +112,11 @@ class Navigation extends React.Component {
         <Grid element={'ul'} cols={3}>
           {links.map(({ name, link }, index) => (
             <li key={index}>
-              <Link to={link} activeStyle={activeNavLink}>
+              <Link
+                to={link}
+                onClick={this.props.handleMenuClick}
+                activeStyle={activeNavLink}
+              >
                 <Heading element={'h3'} size={1} light={true}>
                   {name}
                 </Heading>
@@ -127,6 +131,7 @@ class Navigation extends React.Component {
 
 Navigation.propTypes = {
   open: PropTypes.bool,
+  handleMenuClick: PropTypes.func,
 }
 
 export default Navigation
