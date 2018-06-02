@@ -1,7 +1,7 @@
 import { injectGlobal } from 'emotion'
 
-import interUI from '~/src/fonts/Inter-UI-Regular.woff2'
-import interUIBold from '~/src/fonts/Inter-UI-Bold.woff2'
+import interUI from '~/src/fonts/inter-ui-regular.woff2'
+import interUIBold from '~/src/fonts/inter-ui-bold.woff2'
 import vollkorn from '~/src/fonts/vollkorn.woff2'
 import vollkornBold from '~/src/fonts/vollkorn-bold.woff2'
 
