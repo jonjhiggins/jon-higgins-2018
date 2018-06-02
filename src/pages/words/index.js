@@ -1,13 +1,35 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Page from '~/src/components/page'
 
-const ThisPage = ({ transition }) => (
-  <Page transition={transition} heading={'Words'} />
-)
+import SectionTemplate from '~/src/templates/section-listing'
 
-ThisPage.propTypes = {
-  transition: PropTypes.object,
+/**
+ * Section listing page for words articles
+ * @param {object} data [description]
+ */
+export default function Section({
+  data: {
+    allMarkdownRemark: { edges: items },
+  },
+}) {
+  return <SectionTemplate items={items} heading={'Words'} />
 }
 
-export default ThisPage
+Section.propTypes = {
+  data: PropTypes.shape({
+    allMarkdownRemark: PropTypes.shape({
+      edges: PropTypes.array,
+    }),
+  }),
+}
+
+export const pageQuery = graphql`
+  query GetWordsPosts {
+    allMarkdownRemark(
+      filter: { frontmatter: { category: { eq: "words" } } }
+      sort: { order: DESC, fields: [frontmatter___date] }
+    ) {
+      ...GetSectionPosts
+    }
+  }
+`

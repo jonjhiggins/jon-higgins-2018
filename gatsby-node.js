@@ -1,4 +1,5 @@
 const path = require('path')
+const getSitePath = require('./src/utils/getSitePath')
 
 exports.createPages = ({ boundActionCreators, graphql }) => {
   const { createPage } = boundActionCreators
@@ -25,7 +26,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
       createPage({
-        path: node.fileAbsolutePath.replace('.md', '').replace('src/data/', ''),
+        path: getSitePath(node.fileAbsolutePath),
         component: postTemplate,
         // additional data can be passed via context
         context: {
