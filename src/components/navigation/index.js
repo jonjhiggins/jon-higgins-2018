@@ -63,8 +63,13 @@ const NavigationWrapper = styled('nav')({
   '& li': {
     margin: `0 0 ${rem(BASELINE)}`,
     padding: 0,
-    height: `${rem(54)}`,
+    height: `${rem(BASELINE * 3.5)}`,
     transform: 'translateX(0)',
+
+    [BREAKPOINTS.L_MIN]: {
+      marginBottom: 0,
+    },
+
     '& a': {
       border: `${rem(2)} solid ${COLOURS.GREY}`,
       display: 'flex',
@@ -75,6 +80,7 @@ const NavigationWrapper = styled('nav')({
       color: 'inherit',
       textDecoration: 'none',
       transition: '400ms border-color ease, 400ms border-style ease',
+      boxSizing: 'border-box',
       '&:hover': {
         borderColor: `${COLOURS.PRIMARY}`,
       },

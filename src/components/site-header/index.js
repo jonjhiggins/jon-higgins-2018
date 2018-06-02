@@ -25,6 +25,7 @@ const Header = styled('header')`
 
   ${BREAKPOINTS.L_MIN} {
     margin: 0 ${GRID_GUTTER_REM.L};
+    padding-bottom: ${rem(BASELINE * 3.5)};
   }
 `
 
