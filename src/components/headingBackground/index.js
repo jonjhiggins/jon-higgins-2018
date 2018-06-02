@@ -11,12 +11,12 @@ import { BASELINE } from '~/src/settings/typography'
 
 const Wrapper = styled('div')({}, () => {
   const backgroundStyles = {
-    paddingTop: rem(BASELINE * 2),
-    paddingLeft: `${GRID_GUTTER_REM.S}`,
-    paddingRight: `${GRID_GUTTER_REM.S}`,
+    paddingTop: rem(BASELINE / 2),
+    paddingLeft: rem(BASELINE),
     position: 'relative',
 
     [BREAKPOINTS.L_MIN]: {
+      paddingTop: rem(BASELINE * 2),
       paddingLeft: `${GRID_GUTTER_REM.L}`,
       paddingRight: `${GRID_GUTTER_REM.L}`,
     },
@@ -27,12 +27,14 @@ const Wrapper = styled('div')({}, () => {
       top: 0,
       left: 0,
       right: `-${GRID_GUTTER_REM.S}`,
-      bottom: rem(BASELINE),
+      height: rem(BASELINE * 5),
       backgroundColor: COLOURS.PRIMARY,
       zIndex: '-1',
 
       [BREAKPOINTS.L_MIN]: {
         right: `-${GRID_GUTTER_REM.L}`,
+        bottom: rem(BASELINE),
+        height: 'auto',
       },
     },
   }
@@ -42,7 +44,7 @@ const Wrapper = styled('div')({}, () => {
 
 const HeadingBackground = ({ element, children }) => (
   <Wrapper>
-    <Heading element={element} marginBottom={5} sizeS={4} sizeL={6}>
+    <Heading element={element} marginBottom={5} sizeS={3} sizeL={4}>
       {children}
     </Heading>
   </Wrapper>

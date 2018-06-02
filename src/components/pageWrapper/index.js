@@ -18,9 +18,11 @@ export default function PageWrapper({ transition, children, heading }) {
   return (
     <div style={transition && transition.style}>
       <PageWrapperInner>
-        <Heading element={'h1'} marginTop={6} marginBottom={6} size={4}>
-          {heading}
-        </Heading>
+        {heading && (
+          <Heading element={'h1'} marginTop={6} marginBottom={6} size={4}>
+            {heading}
+          </Heading>
+        )}
         {children}
       </PageWrapperInner>
     </div>
@@ -30,5 +32,5 @@ export default function PageWrapper({ transition, children, heading }) {
 PageWrapper.propTypes = {
   transition: PropTypes.object,
   heading: PropTypes.string,
-  children: PropTypes.object,
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
 }
