@@ -13,8 +13,10 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `./src/data/`,
+        name: 'markdown-pages',
       },
     },
+    'gatsby-transformer-remark',
   ],
   pathPrefix: `/jon-higgins-2018`,
 }
