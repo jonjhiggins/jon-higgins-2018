@@ -17,14 +17,16 @@ const Heading = ({
   type = 'INTER_UI',
   marginTop = 0,
   marginBottom = 0,
+  marginBottomS,
+  marginBottomM,
   html,
   sizeS,
-  sizeL,
+  sizeM,
   light,
 }) => {
   const sizeIndex = size - 1
   const sizeSIndex = typeof sizeS !== 'undefined' ? sizeS - 1 : null
-  const sizeLIndex = typeof sizeL !== 'undefined' ? sizeL - 1 : null
+  const sizeMIndex = typeof sizeM !== 'undefined' ? sizeM - 1 : null
 
   const mainIndex = sizeSIndex !== null ? sizeSIndex : sizeIndex
 
@@ -33,7 +35,7 @@ const Heading = ({
 
   const headingStyles = {
     marginTop: rem(marginTop * BASELINE),
-    marginBottom: rem(marginBottom * BASELINE),
+    marginBottom: rem((marginBottomS || marginBottom) * BASELINE),
     position: 'relative',
     fontWeight: light ? 'normal' : null,
     '& > span': {
@@ -42,16 +44,19 @@ const Heading = ({
     'a.active > &': {
       fontWeight: 'bold', // site-header links active state
     },
+    [BREAKPOINTS.M_MIN]: {
+      marginBottom: marginBottomM ? rem(marginBottomM * BASELINE) : null,
+    },
   }
 
   let combinedStyles = Object.assign({}, mainStyles, headingStyles)
 
   // Set large breakpoint if size defined
-  if (sizeLIndex >= 0) {
+  if (sizeMIndex >= 0) {
     const largeStyles =
       type === 'INTER_UI'
-        ? interUIStyles[sizeLIndex]
-        : vollkornStyles[sizeLIndex]
+        ? interUIStyles[sizeMIndex]
+        : vollkornStyles[sizeMIndex]
     const largeStylesMerged = Object.assign({}, largeStyles, headingStyles)
     combinedStyles = {
       ...combinedStyles,
@@ -72,10 +77,12 @@ Heading.propTypes = {
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   size: PropTypes.number,
   sizeS: PropTypes.number,
-  sizeL: PropTypes.number,
+  sizeM: PropTypes.number,
   type: PropTypes.oneOf(['INTER_UI', 'VOLKORN']),
   marginTop: PropTypes.number,
   marginBottom: PropTypes.number,
+  marginBottomS: PropTypes.number,
+  marginBottomM: PropTypes.number,
   html: PropTypes.string,
   light: PropTypes.bool,
 }

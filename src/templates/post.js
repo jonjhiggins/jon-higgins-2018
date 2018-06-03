@@ -5,6 +5,7 @@ import PageWrapper from '~/src/components/page-wrapper'
 import ArticleWrapper from '~/src/components/article-wrapper'
 import Article from '~/src/components/article'
 import ArticleContent from '~/src/components/article-content'
+import BodyText from '~/src/components/body-text'
 import HeadingBackground from '~/src/components/heading-background'
 import Heading from '~/src/components/heading'
 
@@ -18,14 +19,19 @@ export default function Template({ data, transition }) {
       <ArticleWrapper>
         <Article>
           <ArticleContent>
-            <Heading element={'h2'} sizeL={4}>
+            <Heading element={'h5'} marginBottom={2}>
+              {date}
+            </Heading>
+            <Heading
+              element={'h2'}
+              sizeS={2}
+              sizeM={3}
+              marginBottomS={3}
+              marginBottomM={6}
+            >
               {description}
             </Heading>
-            <h2>{date}</h2>
-            <div
-              className="blog-post-content"
-              dangerouslySetInnerHTML={{ __html: html }}
-            />
+            <BodyText dangerouslySetInnerHTML={{ __html: html }} />
           </ArticleContent>
         </Article>
       </ArticleWrapper>
@@ -43,7 +49,7 @@ export const pageQuery = graphql`
     markdownRemark(fileAbsolutePath: { eq: $fileAbsolutePath }) {
       html
       frontmatter {
-        date(formatString: "MMMM DD, YYYY")
+        date(formatString: "DD MMMM YYYY")
         title
         description
       }

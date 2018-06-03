@@ -15,6 +15,8 @@ import { BASELINE } from '~/src/settings/typography'
 import COLOURS from '~/src/settings/colours'
 import { rem } from '~/src/utils'
 
+require('prismjs/themes/prism-solarizedlight.css')
+
 // Fonts
 // import interUI from '~/src/fonts/inter-ui-regular.woff2'
 // import interUIBold from '~/src/fonts/inter-ui-bold.woff2'

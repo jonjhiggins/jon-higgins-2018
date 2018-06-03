@@ -53,14 +53,14 @@ const IndexPage = () => (
       Propre, ouvert, intelligent.
     </HeadingBackground>
     <Shift>
-      <Heading element={'h2'} sizeS={2} sizeL={4} marginBottom={0} light={true}>
+      <Heading element={'h2'} sizeS={2} sizeM={4} marginBottom={0} light={true}>
         Comprendre les enquêtes de laboratoire
       </Heading>
     </Shift>
     <ArticleWrapper>
       <Article>
         <ArticleContent>
-          <Heading element={'h3'} sizeS={2} sizeL={4}>
+          <Heading element={'h3'} sizeS={2} sizeM={4}>
             Hyperlink.
           </Heading>
           <p>
@@ -80,7 +80,7 @@ const IndexPage = () => (
             ipsum primis in faucibus.
           </p>
 
-          <Heading element={'h3'} sizeS={2} sizeL={3}>
+          <Heading element={'h3'} sizeS={2} sizeM={3}>
             Comprendre les enquêtes de laboratoire.
           </Heading>
           <p>
