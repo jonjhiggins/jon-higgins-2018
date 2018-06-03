@@ -10,7 +10,6 @@ const Article = styled('div')`
   border: ${rem(2)} solid ${COLOURS.PRIMARY};
   padding-top: ${rem(BASELINE * 15 - 2)};
   padding-bottom: ${rem(BASELINE * 11)};
-  margin-top: -${rem(BASELINE * 5.5)};
   margin-bottom: ${rem(BASELINE * 4)};
   ${BREAKPOINTS.L_MIN} {
     grid-column: 1 / 5;

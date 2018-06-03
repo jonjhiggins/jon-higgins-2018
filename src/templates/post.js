@@ -12,9 +12,7 @@ export default function Template({ data, transition }) {
   const { frontmatter, html } = markdownRemark
   return (
     <PageWrapper transition={transition}>
-      <HeadingBackground element={'h1'} marginBottom={6}>
-        {frontmatter.title}
-      </HeadingBackground>
+      <HeadingBackground>{frontmatter.title}</HeadingBackground>
       <ArticleWrapper>
         <Article>
           <ArticleContent>

@@ -9,49 +9,50 @@ import { GRID_GUTTER_REM } from '~/src/settings/grid'
 import { BREAKPOINTS } from '~/src/settings/breakpoints'
 import { BASELINE } from '~/src/settings/typography'
 
-const Wrapper = styled('div')({}, () => {
-  const backgroundStyles = {
-    paddingTop: rem(BASELINE / 2),
-    paddingLeft: rem(BASELINE),
-    position: 'relative',
+const Wrapper = styled('div')({
+  paddingTop: rem(BASELINE / 2),
+  paddingLeft: rem(BASELINE),
+  position: 'relative',
+
+  [BREAKPOINTS.L_MIN]: {
+    paddingTop: rem(BASELINE * 1.5),
+    paddingLeft: `${GRID_GUTTER_REM.L}`,
+    paddingRight: `${GRID_GUTTER_REM.L}`,
+  },
+
+  '&::after': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: `-${GRID_GUTTER_REM.S}`,
+    height: rem(BASELINE * 5),
+    backgroundColor: COLOURS.PRIMARY,
+    zIndex: '-1',
 
     [BREAKPOINTS.L_MIN]: {
-      paddingTop: rem(BASELINE * 2),
-      paddingLeft: `${GRID_GUTTER_REM.L}`,
-      paddingRight: `${GRID_GUTTER_REM.L}`,
+      right: `-${GRID_GUTTER_REM.L}`,
     },
+  },
 
-    '&::after': {
-      content: '""',
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      right: `-${GRID_GUTTER_REM.S}`,
-      height: rem(BASELINE * 5),
-      backgroundColor: COLOURS.PRIMARY,
-      zIndex: '-1',
-
-      [BREAKPOINTS.L_MIN]: {
-        right: `-${GRID_GUTTER_REM.L}`,
-        bottom: rem(BASELINE),
-        height: 'auto',
-      },
+  '& > h1': {
+    [BREAKPOINTS.L_MIN]: {
+      lineHeight: rem(BASELINE * 4),
+      padding: 0,
+      marginBottom: rem(BASELINE * 8.5),
     },
-  }
-
-  return backgroundStyles
+  },
 })
 
-const HeadingBackground = ({ element, children }) => (
+const HeadingBackground = ({ children }) => (
   <Wrapper>
-    <Heading element={element} marginBottom={5} sizeS={3} sizeL={4}>
+    <Heading element={'h1'} marginBottom={5} sizeS={3} sizeL={4}>
       {children}
     </Heading>
   </Wrapper>
 )
 
 HeadingBackground.propTypes = {
-  element: PropTypes.string,
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
