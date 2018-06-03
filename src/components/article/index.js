@@ -10,10 +10,13 @@ const Article = styled('div')`
   border: ${rem(2)} solid ${COLOURS.PRIMARY};
   padding-top: ${rem(BASELINE * 3 - 2)};
   padding-bottom: ${rem(BASELINE * 11)};
-  padding-left: ${GRID_GUTTER_REM.S};
-  padding-right: ${GRID_GUTTER_REM.S};
-  margin: 0 -${rem(GRID_GUTTER.S + 2)};
-  margin-bottom: ${rem(BASELINE * 4)};
+  margin: 0 -${rem(GRID_GUTTER.S + 2)} ${rem(BASELINE * 4)};
+
+  ${BREAKPOINTS.S_MAX} {
+    padding-left: ${GRID_GUTTER_REM.S};
+    padding-right: ${GRID_GUTTER_REM.S};
+  }
+
   ${BREAKPOINTS.M_MIN} {
     padding-top: ${rem(BASELINE * 15 - 2)};
     margin: 0;
