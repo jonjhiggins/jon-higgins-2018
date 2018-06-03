@@ -1,5 +1,5 @@
 import React from 'react'
-import PageWrapper from '~/src/components/pageWrapper'
+import PageWrapper from '~/src/components/page-wrapper'
 import Heading from '~/src/components/heading'
 import StyleguideTypography from '~/src/components/styleguide-typography'
 

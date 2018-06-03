@@ -1,8 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import PageWrapper from '~/src/components/pageWrapper'
-import HeadingBackground from '~/src/components/headingBackground'
+import PageWrapper from '~/src/components/page-wrapper'
+import ArticleWrapper from '~/src/components/article-wrapper'
+import Article from '~/src/components/article'
+import ArticleContent from '~/src/components/article-content'
+import HeadingBackground from '~/src/components/heading-background'
 
 export default function Template({ data, transition }) {
   const { markdownRemark } = data // data.markdownRemark holds our post data
@@ -12,15 +15,17 @@ export default function Template({ data, transition }) {
       <HeadingBackground element={'h1'} marginBottom={6}>
         {frontmatter.title}
       </HeadingBackground>
-      <div className="blog-post-container">
-        <div className="blog-post">
-          <h2>{frontmatter.date}</h2>
-          <div
-            className="blog-post-content"
-            dangerouslySetInnerHTML={{ __html: html }}
-          />
-        </div>
-      </div>
+      <ArticleWrapper>
+        <Article>
+          <ArticleContent>
+            <h2>{frontmatter.date}</h2>
+            <div
+              className="blog-post-content"
+              dangerouslySetInnerHTML={{ __html: html }}
+            />
+          </ArticleContent>
+        </Article>
+      </ArticleWrapper>
     </PageWrapper>
   )
 }

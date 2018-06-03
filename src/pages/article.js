@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'react-emotion'
 
-import PageWrapper from '~/src/components/pageWrapper'
-import HeadingBackground from '~/src/components/headingBackground'
+import PageWrapper from '~/src/components/page-wrapper'
+import HeadingBackground from '~/src/components/heading-background'
 import Heading from '~/src/components/heading'
 import { BASELINE } from '~/src/settings/typography'
 import { BREAKPOINTS } from '~/src/settings/breakpoints'

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 
-import PageWrapper from '~/src/components/pageWrapper'
+import PageWrapper from '~/src/components/page-wrapper'
 import getSitePath from '~/src/utils/getSitePath'
 
 export default function Template({ transition, items, heading }) {

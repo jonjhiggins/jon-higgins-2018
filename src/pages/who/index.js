@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import PageWrapper from '~/src/components/pageWrapper'
+import PageWrapper from '~/src/components/page-wrapper'
 
 /**
  * Section listing page for words articles
