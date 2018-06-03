@@ -1,19 +1,20 @@
 import styled from 'react-emotion'
 
-import { BREAKPOINTS } from '~/src/settings/breakpoints'
-import { GRID_GUTTER_REM } from '~/src/settings/grid'
 import COLOURS from '~/src/settings/colours'
 import { rem } from '~/src/utils'
 
-import {
-  interUIStyles,
-  vollkornStyles,
-  BASELINE,
-} from '~/src/settings/typography'
+import { interUIStyles, BASELINE } from '~/src/settings/typography'
 
 const BodyText = styled('div')({
   p: {
     margin: `0 0 ${rem(BASELINE * 2)}`,
+  },
+  'ul, ol': {
+    margin: `0 0 ${rem(BASELINE * 2)}`,
+    padding: `0 0 0 1em`,
+  },
+  li: {
+    marginBottom: rem(BASELINE * 1),
   },
   a: {
     color: 'inherit',

@@ -22,13 +22,19 @@ const Article = styled('div')`
     margin: 0;
     grid-column: 1 / 6;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: ${GRID_GUTTER_REM.M};
+    grid-template-columns: [article-full-start] 1fr [article-main-start] repeat(
+        3,
+        1fr
+      ) [article-main-end] 1fr [article-full-end];
+    grid-column-gap: ${GRID_GUTTER_REM.M};
   }
 
   ${BREAKPOINTS.L_MIN} {
     grid-column: 1 / 5;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: [article-full-start] 1fr [article-main-start] repeat(
+        2,
+        1fr
+      ) [article-main-end] 1fr [article-full-end];
   }
 `
 
