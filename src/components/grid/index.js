@@ -9,10 +9,10 @@ const GridElement = styled('ul')`
   list-style: none;
   margin: 0;
   padding: 0;
-  ${BREAKPOINTS.L_MIN} {
+  ${BREAKPOINTS.M_MIN} {
     display: grid;
     grid-template-columns: repeat(${props => props.cols}, 1fr);
-    grid-gap: ${GRID_GUTTER_REM.L};
+    grid-gap: ${GRID_GUTTER_REM.M};
   }
 `
 

@@ -14,10 +14,10 @@ const Wrapper = styled('div')({
   paddingLeft: rem(BASELINE),
   position: 'relative',
 
-  [BREAKPOINTS.L_MIN]: {
+  [BREAKPOINTS.M_MIN]: {
     paddingTop: rem(BASELINE * 1.5),
-    paddingLeft: `${GRID_GUTTER_REM.L}`,
-    paddingRight: `${GRID_GUTTER_REM.L}`,
+    paddingLeft: `${GRID_GUTTER_REM.M}`,
+    paddingRight: `${GRID_GUTTER_REM.M}`,
   },
 
   '&::after': {
@@ -30,13 +30,13 @@ const Wrapper = styled('div')({
     backgroundColor: COLOURS.PRIMARY,
     zIndex: '-1',
 
-    [BREAKPOINTS.L_MIN]: {
-      right: `-${GRID_GUTTER_REM.L}`,
+    [BREAKPOINTS.M_MIN]: {
+      right: `-${GRID_GUTTER_REM.M}`,
     },
   },
 
   '& > h1': {
-    [BREAKPOINTS.L_MIN]: {
+    [BREAKPOINTS.M_MIN]: {
       lineHeight: rem(BASELINE * 4),
       padding: 0,
       marginBottom: rem(BASELINE * 8.5),

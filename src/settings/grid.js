@@ -5,12 +5,12 @@ import { rem } from '~/src/utils'
 
 const GRID_GUTTER = {
   S: SPACING_RAW[3],
-  L: SPACING_RAW[4],
+  M: SPACING_RAW[4],
 }
 
 const GRID_GUTTER_REM = {
   S: rem(GRID_GUTTER.S),
-  L: rem(GRID_GUTTER.L),
+  M: rem(GRID_GUTTER.M),
 }
 
 export { GRID_GUTTER, GRID_GUTTER_REM }

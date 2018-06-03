@@ -9,8 +9,8 @@ import { BREAKPOINTS } from '~/src/settings/breakpoints'
 const PageWrapperInner = styled('div')`
   margin: 0 ${GRID_GUTTER_REM.S};
 
-  ${BREAKPOINTS.L_MIN} {
-    margin: 0 ${GRID_GUTTER_REM.L};
+  ${BREAKPOINTS.M_MIN} {
+    margin: 0 ${GRID_GUTTER_REM.M};
   }
 `
 

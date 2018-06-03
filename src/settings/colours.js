@@ -3,4 +3,5 @@ export default {
   GREY: '#EBECEC',
   WHITE: '#FFFFFF',
   BLACK: '#000000',
+  SHADOW: 'rgba(0, 97, 57, 0.1)',
 }

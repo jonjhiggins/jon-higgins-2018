@@ -55,7 +55,7 @@ const Heading = ({
     const largeStylesMerged = Object.assign({}, largeStyles, headingStyles)
     combinedStyles = {
       ...combinedStyles,
-      [BREAKPOINTS.L_MIN]: largeStylesMerged,
+      [BREAKPOINTS.M_MIN]: largeStylesMerged,
     }
   }
 

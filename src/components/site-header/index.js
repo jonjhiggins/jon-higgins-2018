@@ -23,15 +23,15 @@ const Header = styled('header')`
   margin: 0 ${GRID_GUTTER_REM.S};
   padding: ${rem(BASELINE * 3)} 0;
 
-  ${BREAKPOINTS.L_MIN} {
-    margin: 0 ${GRID_GUTTER_REM.L};
+  ${BREAKPOINTS.M_MIN} {
+    margin: 0 ${GRID_GUTTER_REM.M};
     min-height: ${rem(BASELINE * 4)};
     padding-bottom: ${rem(BASELINE * 4)};
   }
 `
 
 const DescriptionLi = styled('li')`
-  ${BREAKPOINTS.L_MIN} {
+  ${BREAKPOINTS.M_MIN} {
     grid-column: 1 / 3;
   }
 `
@@ -54,7 +54,7 @@ const NavToggleButton = styled('button')({
   left: GRID_GUTTER_REM.S,
   backgroundColor: 'transparent',
   zIndex: `${Z_INDEX.NAV_OPEN + 1}`,
-  [BREAKPOINTS.L_MIN]: {
+  [BREAKPOINTS.M_MIN]: {
     display: 'none;',
   },
 })
@@ -99,7 +99,7 @@ const BurgerIcons = styled('span')`
 `
 
 const NavLi = styled('li')({
-  [BREAKPOINTS.L_MIN]: {
+  [BREAKPOINTS.M_MIN]: {
     gridColumn: '3 / 6',
   },
 })

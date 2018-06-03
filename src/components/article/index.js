@@ -11,11 +11,16 @@ const Article = styled('div')`
   padding-top: ${rem(BASELINE * 15 - 2)};
   padding-bottom: ${rem(BASELINE * 11)};
   margin-bottom: ${rem(BASELINE * 4)};
+  ${BREAKPOINTS.M_MIN} {
+    grid-column: 1 / 6;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: ${GRID_GUTTER_REM.M};
+  }
+
   ${BREAKPOINTS.L_MIN} {
     grid-column: 1 / 5;
-    display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: ${GRID_GUTTER_REM.L};
   }
 `
 

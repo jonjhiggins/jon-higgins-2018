@@ -6,17 +6,22 @@ import ArticleWrapper from '~/src/components/article-wrapper'
 import Article from '~/src/components/article'
 import ArticleContent from '~/src/components/article-content'
 import HeadingBackground from '~/src/components/heading-background'
+import Heading from '~/src/components/heading'
 
 export default function Template({ data, transition }) {
   const { markdownRemark } = data // data.markdownRemark holds our post data
   const { frontmatter, html } = markdownRemark
+  const { title, description, date } = frontmatter
   return (
     <PageWrapper transition={transition}>
-      <HeadingBackground>{frontmatter.title}</HeadingBackground>
+      <HeadingBackground>{title}</HeadingBackground>
       <ArticleWrapper>
         <Article>
           <ArticleContent>
-            <h2>{frontmatter.date}</h2>
+            <Heading element={'h2'} sizeL={4}>
+              {description}
+            </Heading>
+            <h2>{date}</h2>
             <div
               className="blog-post-content"
               dangerouslySetInnerHTML={{ __html: html }}
@@ -40,6 +45,7 @@ export const pageQuery = graphql`
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         title
+        description
       }
     }
   }

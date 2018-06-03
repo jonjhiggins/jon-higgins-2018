@@ -14,16 +14,16 @@ const Shift = styled('div')`
   position: relative;
   left: -${GRID_GUTTER_REM.S};
 
-  ${BREAKPOINTS.L_MIN} {
-    left: -${GRID_GUTTER_REM.L};
+  ${BREAKPOINTS.M_MIN} {
+    left: -${GRID_GUTTER_REM.M};
   }
 `
 
 const ArticleWrapper = styled('div')`
-  ${BREAKPOINTS.L_MIN} {
+  ${BREAKPOINTS.M_MIN} {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-gap: ${GRID_GUTTER_REM.L};
+    grid-gap: ${GRID_GUTTER_REM.M};
   }
 `
 
@@ -33,16 +33,16 @@ const Article = styled('div')`
   padding-bottom: ${rem(BASELINE * 11)};
   margin-top: -${rem(BASELINE * 5.5)};
   margin-bottom: ${rem(BASELINE * 4)};
-  ${BREAKPOINTS.L_MIN} {
+  ${BREAKPOINTS.M_MIN} {
     grid-column: 1 / 5;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: ${GRID_GUTTER_REM.L};
+    grid-gap: ${GRID_GUTTER_REM.M};
   }
 `
 
 const ArticleContent = styled('div')`
-  ${BREAKPOINTS.L_MIN} {
+  ${BREAKPOINTS.M_MIN} {
     grid-column: 2 / 4;
   }
 `

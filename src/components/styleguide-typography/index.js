@@ -28,7 +28,7 @@ const Columns = styled('ul')`
   padding: 0;
   margin: ${rem(BASELINE * 6)} 0 0;
   display: grid;
-  grid-gap: ${GRID_GUTTER_REM.L};
+  grid-gap: ${GRID_GUTTER_REM.M};
   position: relative;
 
   @media (min-width: ${rem(450 + BASELINE * 2)}) {

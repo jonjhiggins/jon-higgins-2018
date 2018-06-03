@@ -51,7 +51,7 @@ const NavigationWrapper = styled('nav')({
     padding: `${rem(BASELINE * 3)} ${GRID_GUTTER_REM.S}`,
     zIndex: `${Z_INDEX.NAV_OPEN}`,
   },
-  [BREAKPOINTS.L_MIN]: {
+  [BREAKPOINTS.M_MIN]: {
     position: 'relative',
   },
   '& > ul': {
@@ -66,7 +66,7 @@ const NavigationWrapper = styled('nav')({
     height: `${rem(BASELINE * 3.5)}`,
     transform: 'translateX(0)',
 
-    [BREAKPOINTS.L_MIN]: {
+    [BREAKPOINTS.M_MIN]: {
       marginBottom: 0,
     },
 
@@ -97,7 +97,7 @@ class Navigation extends React.Component {
   }
   componentDidMount() {
     const mediaQueryList = window.matchMedia(
-      BREAKPOINTS.L_MIN.replace('@media ', '')
+      BREAKPOINTS.M_MIN.replace('@media ', '')
     )
     mediaQueryList.addListener(this.handleBreakpointChange.bind(this))
     this.handleBreakpointChange(mediaQueryList)
