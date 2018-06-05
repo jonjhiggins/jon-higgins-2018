@@ -45,6 +45,7 @@ const BodyText = styled('div')({
   },
   h2: {
     ...interUIStyles[2],
+    color: COLOURS.GREY_GREEN,
   },
   h3: {
     ...interUIStyles[2],

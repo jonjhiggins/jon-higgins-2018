@@ -23,6 +23,7 @@ const Heading = ({
   sizeS,
   sizeM,
   light,
+  colour,
 }) => {
   const sizeIndex = size - 1
   const sizeSIndex = typeof sizeS !== 'undefined' ? sizeS - 1 : null
@@ -32,8 +33,8 @@ const Heading = ({
 
   const mainStyles =
     type === 'INTER_UI' ? interUIStyles[mainIndex] : vollkornStyles[mainIndex]
-
   const headingStyles = {
+    color: colour || null,
     marginTop: rem(marginTop * BASELINE),
     marginBottom: rem((marginBottomS || marginBottom) * BASELINE),
     position: 'relative',
@@ -43,6 +44,10 @@ const Heading = ({
     },
     'a.active > &': {
       fontWeight: 'bold', // site-header links active state
+    },
+    '& > a': {
+      color: 'inherit',
+      textDecoration: 'none',
     },
     [BREAKPOINTS.M_MIN]: {
       marginBottom: marginBottomM ? rem(marginBottomM * BASELINE) : null,
@@ -85,6 +90,7 @@ Heading.propTypes = {
   marginBottomM: PropTypes.number,
   html: PropTypes.string,
   light: PropTypes.bool,
+  colour: PropTypes.string,
 }
 
 export default Heading

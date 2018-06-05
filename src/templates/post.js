@@ -8,6 +8,7 @@ import ArticleContent from '~/src/components/article-content'
 import BodyText from '~/src/components/body-text'
 import HeadingBackground from '~/src/components/heading-background'
 import Heading from '~/src/components/heading'
+import COLOURS from '~/src/settings/colours'
 
 export default function Template({ data, transition }) {
   const { markdownRemark } = data // data.markdownRemark holds our post data
@@ -19,7 +20,11 @@ export default function Template({ data, transition }) {
       <ArticleWrapper>
         <Article>
           <ArticleContent>
-            <Heading element={'h5'} marginBottom={2}>
+            <Heading
+              element={'h5'}
+              marginBottom={2}
+              colour={COLOURS.GREY_GREEN}
+            >
               {date}
             </Heading>
             <Heading

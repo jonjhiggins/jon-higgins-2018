@@ -18,6 +18,7 @@ const circles = Object.keys(SPACING_RAW).map(key => SPACING_RAW[key])
 
 const Wrapper = styled('div')`
   position: relative;
+  margin-bottom: ${rem(BASELINE * 4)};
 `
 
 const col1 = 190

@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'react-emotion'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 
@@ -7,7 +8,21 @@ import HeadingBackground from '~/src/components/heading-background'
 import ArticleWrapper from '~/src/components/article-wrapper'
 import Article from '~/src/components/article'
 import ArticleContent from '~/src/components/article-content'
+import Heading from '~/src/components/heading'
 import getSitePath from '~/src/utils/getSitePath'
+import { BASELINE } from '~/src/settings/typography'
+import { rem } from '~/src/utils'
+
+const LinkBlocks = styled('ul')`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+`
+
+const LinkBlock = styled('li')`
+  list-style: none;
+  margin: 0 0 ${rem(BASELINE)};
+`
 
 export default function Template({ transition, items, heading }) {
   return (
@@ -16,16 +31,20 @@ export default function Template({ transition, items, heading }) {
       <ArticleWrapper>
         <Article>
           <ArticleContent>
-            {items.map(({ node }, index) => {
-              const { frontmatter, fileAbsolutePath } = node
-              return (
-                <p key={index}>
-                  <Link to={getSitePath(fileAbsolutePath)}>
-                    {frontmatter.title}
-                  </Link>
-                </p>
-              )
-            })}
+            <LinkBlocks>
+              {items.map(({ node }, index) => {
+                const { frontmatter, fileAbsolutePath } = node
+                return (
+                  <LinkBlock key={index}>
+                    <Heading element={'h3'} size={2}>
+                      <Link to={getSitePath(fileAbsolutePath)}>
+                        {frontmatter.title}
+                      </Link>
+                    </Heading>
+                  </LinkBlock>
+                )
+              })}
+            </LinkBlocks>
           </ArticleContent>
         </Article>
       </ArticleWrapper>
