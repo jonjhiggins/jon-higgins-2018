@@ -1,4 +1,5 @@
 import styled from 'react-emotion'
+import PropTypes from 'prop-types'
 
 import { BREAKPOINTS } from '~/src/settings/breakpoints'
 import { GRID_GUTTER_REM } from '~/src/settings/grid'
@@ -11,7 +12,7 @@ const ArticleContent = styled('div')`
 
   & > *:not(div) {
     ${BREAKPOINTS.M_MIN} {
-      grid-column: article-main;
+      grid-column: ${props => (props.centreGrid ? 'article-main' : null)};
     }
   }
 
@@ -36,5 +37,13 @@ const ArticleContent = styled('div')`
     }
   }
 `
+
+ArticleContent.propTypes = {
+  centreGrid: PropTypes.bool,
+}
+
+ArticleContent.defaultProps = {
+  centreGrid: true,
+}
 
 export default ArticleContent

@@ -21,7 +21,7 @@ export default function Template({ data, transition }) {
         <Article>
           <ArticleContent>
             <Heading
-              element={'h5'}
+              element={'time'}
               marginBottom={2}
               colour={COLOURS.GREY_GREEN}
             >

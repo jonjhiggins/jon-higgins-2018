@@ -45,9 +45,8 @@ const Heading = ({
     'a.active > &': {
       fontWeight: 'bold', // site-header links active state
     },
-    '& > a': {
-      color: 'inherit',
-      textDecoration: 'none',
+    'a > &': {
+      color: colour || 'inherit',
     },
     [BREAKPOINTS.M_MIN]: {
       marginBottom: marginBottomM ? rem(marginBottomM * BASELINE) : null,

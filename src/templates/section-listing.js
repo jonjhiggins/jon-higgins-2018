@@ -11,17 +11,25 @@ import ArticleContent from '~/src/components/article-content'
 import Heading from '~/src/components/heading'
 import getSitePath from '~/src/utils/getSitePath'
 import { BASELINE } from '~/src/settings/typography'
+import COLOURS from '~/src/settings/colours'
 import { rem } from '~/src/utils'
 
 const LinkBlocks = styled('ul')`
   list-style: none;
   margin: 0;
   padding: 0;
+  grid-column: article-full;
 `
 
 const LinkBlock = styled('li')`
   list-style: none;
-  margin: 0 0 ${rem(BASELINE)};
+  margin: 0 0 ${rem(BASELINE * 2)};
+  border: ${rem(2)} solid ${COLOURS.PRIMARY};
+  padding: ${rem(BASELINE)};
+  & > a {
+    color: ${COLOURS.BLACK};
+    text-decoration: none;
+  }
 `
 
 export default function Template({ transition, items, heading }) {
@@ -29,18 +37,25 @@ export default function Template({ transition, items, heading }) {
     <PageWrapper transition={transition}>
       <HeadingBackground>{heading}</HeadingBackground>
       <ArticleWrapper>
-        <Article>
-          <ArticleContent>
+        <Article border={false}>
+          <ArticleContent centreGrid={false}>
             <LinkBlocks>
               {items.map(({ node }, index) => {
                 const { frontmatter, fileAbsolutePath } = node
                 return (
                   <LinkBlock key={index}>
-                    <Heading element={'h3'} size={2}>
-                      <Link to={getSitePath(fileAbsolutePath)}>
+                    <Link to={getSitePath(fileAbsolutePath)}>
+                      <Heading
+                        element={'time'}
+                        size={1}
+                        colour={COLOURS.GREY_GREEN}
+                      >
+                        {frontmatter.date}
+                      </Heading>
+                      <Heading element={'h3'} size={2}>
                         {frontmatter.title}
-                      </Link>
-                    </Heading>
+                      </Heading>
+                    </Link>
                   </LinkBlock>
                 )
               })}
@@ -73,7 +88,7 @@ export const pageQuery = graphql`
         id
         fileAbsolutePath
         frontmatter {
-          date(formatString: "MMMM DD, YYYY")
+          date(formatString: "DD MMMM YYYY")
           title
         }
       }
