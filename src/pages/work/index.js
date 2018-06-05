@@ -12,7 +12,7 @@ export default function Section({
     allMarkdownRemark: { edges: items },
   },
 }) {
-  return <SectionTemplate items={items} heading={'Words'} />
+  return <SectionTemplate items={items} heading={'Work'} />
 }
 
 Section.propTypes = {

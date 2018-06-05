@@ -3,19 +3,32 @@ import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 
 import PageWrapper from '~/src/components/page-wrapper'
+import HeadingBackground from '~/src/components/heading-background'
+import ArticleWrapper from '~/src/components/article-wrapper'
+import Article from '~/src/components/article'
+import ArticleContent from '~/src/components/article-content'
 import getSitePath from '~/src/utils/getSitePath'
 
 export default function Template({ transition, items, heading }) {
   return (
-    <PageWrapper transition={transition} heading={heading}>
-      {items.map(({ node }, index) => {
-        const { frontmatter, fileAbsolutePath } = node
-        return (
-          <p key={index}>
-            <Link to={getSitePath(fileAbsolutePath)}>{frontmatter.title}</Link>
-          </p>
-        )
-      })}
+    <PageWrapper transition={transition}>
+      <HeadingBackground>{heading}</HeadingBackground>
+      <ArticleWrapper>
+        <Article>
+          <ArticleContent>
+            {items.map(({ node }, index) => {
+              const { frontmatter, fileAbsolutePath } = node
+              return (
+                <p key={index}>
+                  <Link to={getSitePath(fileAbsolutePath)}>
+                    {frontmatter.title}
+                  </Link>
+                </p>
+              )
+            })}
+          </ArticleContent>
+        </Article>
+      </ArticleWrapper>
     </PageWrapper>
   )
 }

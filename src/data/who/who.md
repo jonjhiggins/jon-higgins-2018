@@ -1,5 +1,5 @@
 ---
-title: A front-end developer based in Melbourne.
+title: Hi, I'm a front-end developer based in Melbourne, Australia.
 ---
 
 ### Contact me
