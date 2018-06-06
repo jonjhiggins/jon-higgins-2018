@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'react-emotion'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
+import hexRgb from 'hex-rgb'
 
 import PageWrapper from '~/src/components/page-wrapper'
 import HeadingBackground from '~/src/components/heading-background'
@@ -14,6 +15,9 @@ import { BASELINE } from '~/src/settings/typography'
 import COLOURS from '~/src/settings/colours'
 import { rem } from '~/src/utils'
 
+const PRIMARY_RGB = hexRgb(COLOURS.PRIMARY, { format: 'array' })
+PRIMARY_RGB.pop()
+
 const LinkBlocks = styled('ul')`
   list-style: none;
   margin: 0;
@@ -25,12 +29,19 @@ const LinkBlock = styled('li')`
   list-style: none;
   margin: 0 0 ${rem(BASELINE * 2)};
   border: ${rem(2)} solid ${COLOURS.PRIMARY};
-  padding: ${rem(BASELINE)};
   & > a {
     color: ${COLOURS.BLACK};
     text-decoration: none;
+    padding: ${rem(BASELINE)};
+    display: block;
+    transition: background-color 400ms ease-out;
+    &:hover {
+      background-color: rgba(${PRIMARY_RGB.join(',')}, 0.05);
+    }
   }
 `
+
+console.log(`rgba(${PRIMARY_RGB.join(',')},)`)
 
 export default function Template({ transition, items, heading }) {
   return (
