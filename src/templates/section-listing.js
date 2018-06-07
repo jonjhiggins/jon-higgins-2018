@@ -1,7 +1,8 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import styled from 'react-emotion'
 import PropTypes from 'prop-types'
-import Link from 'gatsby-link'
+import { navigateTo } from 'gatsby-link'
 import hexRgb from 'hex-rgb'
 
 import PageWrapper from '~/src/components/page-wrapper'
@@ -14,6 +15,7 @@ import getSitePath from '~/src/utils/getSitePath'
 import { BASELINE } from '~/src/settings/typography'
 import COLOURS from '~/src/settings/colours'
 import { rem } from '~/src/utils'
+import { relative } from 'path'
 
 const PRIMARY_RGB = hexRgb(COLOURS.PRIMARY, { format: 'array' })
 PRIMARY_RGB.pop()
@@ -25,10 +27,13 @@ const LinkBlocks = styled('ul')`
   grid-column: article-full;
 `
 
-const LinkBlock = styled('li')`
+const LinkBlockInner = styled('li')`
   list-style: none;
   margin: 0 0 ${rem(BASELINE * 2)};
   border: ${rem(2)} solid ${COLOURS.PRIMARY};
+  position: relative;
+  opacity: ${props => (props.visible || props.transitioning ? 1 : 0)};
+  transition: opacity 400ms ease-out;
   & > a {
     color: ${COLOURS.BLACK};
     text-decoration: none;
@@ -41,41 +46,134 @@ const LinkBlock = styled('li')`
   }
 `
 
-console.log(`rgba(${PRIMARY_RGB.join(',')},)`)
+const TransitionBlock = styled(`div`)`
+  position: absolute;
+  background-color: ${COLOURS.PRIMARY};
+  left: ${rem(-1)};
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateY(${props => props.translateY}px)
+    scaleY(${props => props.scaleY});
+  transition: all 400ms ease-out;
+  border: ${rem(2)} solid ${COLOURS.PRIMARY};
+`
 
-export default function Template({ transition, items, heading }) {
-  return (
-    <PageWrapper transition={transition}>
-      <HeadingBackground>{heading}</HeadingBackground>
-      <ArticleWrapper>
-        <Article border={false}>
-          <ArticleContent centreGrid={false}>
-            <LinkBlocks>
-              {items.map(({ node }, index) => {
-                const { frontmatter, fileAbsolutePath } = node
-                return (
-                  <LinkBlock key={index}>
-                    <Link to={getSitePath(fileAbsolutePath)}>
-                      <Heading
-                        element={'time'}
-                        size={1}
-                        colour={COLOURS.GREY_GREEN}
-                      >
-                        {frontmatter.date}
-                      </Heading>
-                      <Heading element={'h3'} size={2}>
-                        {frontmatter.title}
-                      </Heading>
-                    </Link>
-                  </LinkBlock>
-                )
-              })}
-            </LinkBlocks>
-          </ArticleContent>
-        </Article>
-      </ArticleWrapper>
-    </PageWrapper>
-  )
+class LinkBlock extends React.Component {
+  constructor() {
+    super()
+    this.handleClickBound = this.handleClick.bind(this)
+    this.state = {
+      transitioning: false,
+      transitionPosition: {
+        translateY: 0,
+        scaleY: 1,
+      },
+    }
+  }
+  handleClick(e) {
+    //e.preventDefault()
+    navigateTo(url)
+    return
+    const element = e.currentTarget
+    const url = e.currentTarget.getAttribute('href')
+
+    const { top, left, width, height } = element.getBoundingClientRect()
+    this.setState({
+      transitioning: true,
+    })
+    const {
+      height: articleHeight,
+      top: articleTop,
+    } = this.props.fadeOutOthers()
+    const scaleY = articleHeight / height
+    console.log(scaleY)
+    const translateY = articleTop - top
+    console.log(translateY)
+    window.setTimeout(() => {
+      this.setState({
+        transitionPosition: {
+          scaleY,
+          translateY,
+        },
+      })
+    }, 100)
+    // window.setTimeout(navigateTo.bind(null, url), 1000)
+  }
+  render() {
+    return (
+      <LinkBlockInner
+        visible={this.props.visible}
+        transitioning={this.state.transitioning}
+      >
+        <a
+          href={`/${getSitePath(this.props.fileAbsolutePath)}`}
+          onClick={this.handleClickBound}
+        >
+          <Heading element={'time'} size={1} colour={COLOURS.GREY_GREEN}>
+            {this.props.frontmatter.date}
+          </Heading>
+          <Heading element={'h3'} size={2}>
+            {this.props.frontmatter.title}
+          </Heading>
+        </a>
+        {this.state.transitioning && (
+          <TransitionBlock
+            scaleY={this.state.transitionPosition.scaleY}
+            translateY={this.state.transitionPosition.translateY}
+          />
+        )}
+      </LinkBlockInner>
+    )
+  }
+}
+
+export default class Template extends React.Component {
+  constructor() {
+    super()
+    this.fadeOutOthersBound = this.fadeOutOthers.bind(this)
+    this.state = {
+      linkBlocksVisible: true,
+    }
+  }
+  fadeOutOthers() {
+    const size = ReactDOM.findDOMNode(
+      this.refs['article']
+    ).getBoundingClientRect()
+    console.log(size)
+    this.setState({
+      linkBlocksVisible: false,
+    })
+    return size
+  }
+  render() {
+    return (
+      <PageWrapper transition={this.props.transition}>
+        <HeadingBackground>{this.props.heading}</HeadingBackground>
+        <ArticleWrapper>
+          <Article border={false} ref="article">
+            <ArticleContent centreGrid={false}>
+              <LinkBlocks>
+                {this.props.items.map(({ node }, index) => {
+                  const { frontmatter, fileAbsolutePath } = node
+                  return (
+                    <LinkBlock
+                      key={index}
+                      visible={this.state.linkBlocksVisible}
+                      fadeOutOthers={this.fadeOutOthersBound}
+                      fileAbsolutePath={fileAbsolutePath}
+                      frontmatter={frontmatter}
+                      handleClick={this.handleClickBound}
+                    />
+                  )
+                })}
+              </LinkBlocks>
+            </ArticleContent>
+          </Article>
+        </ArticleWrapper>
+      </PageWrapper>
+    )
+  }
 }
 
 Template.propTypes = {
