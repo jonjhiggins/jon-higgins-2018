@@ -1,5 +1,27 @@
 const path = require('path')
 const getSitePath = require('./src/utils/getSitePath')
+const generateBabelConfig = require('gatsby/dist/utils/babel-config')
+
+exports.modifyWebpackConfig = ({ config, stage }) => {
+  const program = {
+    directory: __dirname,
+    browserslist: ['defaults'],
+  }
+
+  return generateBabelConfig(program, stage).then(babelConfig => {
+    config.removeLoader('js').loader('js', {
+      test: /\.jsx?$/,
+      exclude: modulePath => {
+        return (
+          /node_modules/.test(modulePath) &&
+          !/node_modules\/hex-rgb/.test(modulePath) // hex-rgb needs to go through babel https://github.com/sindresorhus/rgb-hex/issues/4
+        )
+      },
+      loader: 'babel',
+      query: babelConfig,
+    })
+  })
+}
 
 exports.createPages = ({ boundActionCreators, graphql }) => {
   const { createPage } = boundActionCreators
