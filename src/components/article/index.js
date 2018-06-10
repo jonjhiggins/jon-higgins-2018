@@ -10,7 +10,8 @@ import { rem } from '~/src/utils'
 const Article = styled('div')`
   border: ${props =>
     props.border ? `${rem(2)} solid ${COLOURS.PRIMARY}` : null};
-  padding-top: ${props => (props.border ? rem(BASELINE * 3 - 2) : '')};
+  padding-top: ${props =>
+    props.border && !props.hasMedia ? rem(BASELINE * 3 - 2) : ''};
   padding-bottom: ${props => (props.border ? rem(BASELINE * 3) : '')};
   margin: 0 -${rem(GRID_GUTTER.S + 2)} ${rem(BASELINE * 4)};
 
@@ -20,7 +21,8 @@ const Article = styled('div')`
   }
 
   ${BREAKPOINTS.M_MIN} {
-    padding-top: ${props => (props.border ? rem(BASELINE * 15 - 2) : '')};
+    padding-top: ${props =>
+      props.border && !props.hasMedia ? rem(BASELINE * 15 - 2) : ''};
     padding-bottom: ${props => (props.border ? rem(BASELINE * 11) : '')};
     margin-left: 0;
     margin-right: 0;
@@ -42,10 +44,12 @@ const Article = styled('div')`
 
 Article.propTypes = {
   border: PropTypes.bool,
+  hasMedia: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 }
 
 Article.defaultProps = {
   border: true,
+  hasMedia: false,
 }
 
 export default Article

@@ -2,7 +2,7 @@ import styled from 'react-emotion'
 
 import COLOURS from '~/src/settings/colours'
 import { rem } from '~/src/utils'
-
+import { BREAKPOINTS } from '~/src/settings/breakpoints'
 import { interUIStyles, BASELINE } from '~/src/settings/typography'
 
 const BodyText = styled('div')({
@@ -43,12 +43,12 @@ const BodyText = styled('div')({
       },
     },
   },
-  h2: {
-    ...interUIStyles[2],
+  'h2, h3': {
+    ...interUIStyles[1],
     color: COLOURS.GREY_GREEN,
-  },
-  h3: {
-    ...interUIStyles[2],
+    [BREAKPOINTS.M_MIN]: {
+      ...interUIStyles[2],
+    },
   },
   h4: {
     ...interUIStyles[1],

@@ -5,6 +5,7 @@ import PageWrapper from '~/src/components/page-wrapper'
 import ArticleWrapper from '~/src/components/article-wrapper'
 import Article from '~/src/components/article'
 import ArticleContent from '~/src/components/article-content'
+import ArticleHeaderMedia from '~/src/components/article-header-media'
 import BodyText from '~/src/components/body-text'
 import HeadingBackground from '~/src/components/heading-background'
 import Heading from '~/src/components/heading'
@@ -13,13 +14,19 @@ import COLOURS from '~/src/settings/colours'
 export default function Template({ data, transition }) {
   const { markdownRemark } = data // data.markdownRemark holds our post data
   const { frontmatter, html } = markdownRemark
-  const { title, description, date } = frontmatter
+  const { title, description, date, heroVideos, category, images } = frontmatter
+  const videoPath = heroVideos.length
+    ? `data/${category}/images/${heroVideos[0]}`
+    : null
   return (
     <PageWrapper transition={transition}>
       <HeadingBackground>{title}</HeadingBackground>
       <ArticleWrapper>
-        <Article>
+        <Article hasMedia={videoPath || images}>
           <ArticleContent>
+            {(videoPath || images) && (
+              <ArticleHeaderMedia videoPath={videoPath} images={images} />
+            )}
             <Heading
               element={'time'}
               marginBottom={2}
@@ -57,6 +64,9 @@ export const pageQuery = graphql`
         date(formatString: "DD MMMM YYYY")
         title
         description
+        heroVideos
+        images
+        category
       }
     }
   }
