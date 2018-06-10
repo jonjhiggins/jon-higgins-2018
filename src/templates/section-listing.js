@@ -10,12 +10,12 @@ import HeadingBackground from '~/src/components/heading-background'
 import ArticleWrapper from '~/src/components/article-wrapper'
 import Article from '~/src/components/article'
 import ArticleContent from '~/src/components/article-content'
+import CTA from '~/src/components/cta'
 import Heading from '~/src/components/heading'
 import getSitePath from '~/src/utils/getSitePath'
 import { BASELINE } from '~/src/settings/typography'
 import COLOURS from '~/src/settings/colours'
 import { rem } from '~/src/utils'
-import { relative } from 'path'
 
 const PRIMARY_RGB = hexRgb(COLOURS.PRIMARY, { format: 'array' })
 PRIMARY_RGB.pop()
@@ -168,6 +168,13 @@ export default class Template extends React.Component {
                   )
                 })}
               </LinkBlocks>
+              {this.props.footerCTA && (
+                <span>
+                  <CTA to={this.props.footerCTA.link}>
+                    {this.props.footerCTA.text}
+                  </CTA>
+                </span>
+              )}
             </ArticleContent>
           </Article>
         </ArticleWrapper>
@@ -181,6 +188,10 @@ Template.propTypes = {
   data: PropTypes.object,
   items: PropTypes.arrayOf(PropTypes.object),
   heading: PropTypes.string,
+  footerCTA: PropTypes.shape({
+    text: PropTypes.string,
+    link: PropTypes.string,
+  }),
 }
 
 /**
@@ -199,6 +210,7 @@ export const pageQuery = graphql`
         frontmatter {
           date(formatString: "DD MMMM YYYY")
           title
+          archive
         }
       }
     }

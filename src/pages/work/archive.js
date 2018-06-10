@@ -13,15 +13,15 @@ export default function Section({
   },
   transition,
 }) {
-  const itemsFiltered = items.filter(item => !item.node.frontmatter.archive)
+  const itemsFiltered = items.filter(item => item.node.frontmatter.archive)
   return (
     <SectionTemplate
       items={itemsFiltered}
-      heading={'Work'}
+      heading={'Work Archive'}
       transition={transition}
       footerCTA={{
-        text: 'Archive',
-        link: '/work/archive',
+        text: 'Back to Work',
+        link: '/work',
       }}
     />
   )
@@ -37,7 +37,7 @@ Section.propTypes = {
 }
 
 export const pageQuery = graphql`
-  query GetWorkPosts {
+  query GetWorkArchivePosts {
     allMarkdownRemark(
       filter: { frontmatter: { category: { eq: "work" } } }
       sort: { order: DESC, fields: [frontmatter___date] }
