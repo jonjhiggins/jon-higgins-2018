@@ -14,18 +14,29 @@ import COLOURS from '~/src/settings/colours'
 export default function Template({ data, transition }) {
   const { markdownRemark } = data // data.markdownRemark holds our post data
   const { frontmatter, html } = markdownRemark
-  const { title, description, date, heroVideos, category, images } = frontmatter
-  const videoPath = heroVideos.length
-    ? `data/${category}/images/${heroVideos[0]}`
-    : null
+  const {
+    title,
+    description,
+    date,
+    heroVideos,
+    category,
+    heroImages,
+  } = frontmatter
+  const mediaPath = `data/${category}/images/`
+  const videoPath =
+    heroVideos && heroVideos.length ? `${mediaPath}${heroVideos[0]}` : null
   return (
     <PageWrapper transition={transition}>
       <HeadingBackground>{title}</HeadingBackground>
       <ArticleWrapper>
-        <Article hasMedia={videoPath || images}>
+        <Article hasMedia={videoPath || heroImages}>
           <ArticleContent>
-            {(videoPath || images) && (
-              <ArticleHeaderMedia videoPath={videoPath} images={images} />
+            {(videoPath || heroImages) && (
+              <ArticleHeaderMedia
+                videoPath={videoPath}
+                mediaPath={mediaPath}
+                heroImages={heroImages}
+              />
             )}
             <Heading
               element={'time'}
@@ -65,6 +76,10 @@ export const pageQuery = graphql`
         title
         description
         heroVideos
+        heroImages {
+          image
+          caption
+        }
         images
         category
       }

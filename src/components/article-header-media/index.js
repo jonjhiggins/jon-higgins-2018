@@ -1,6 +1,7 @@
 import React from 'react'
-import styled from 'react-emotion'
+import styled, { keyframes } from 'react-emotion'
 
+import Heading from '~/src/components/heading'
 import COLOURS from '~/src/settings/colours'
 import { BASELINE } from '~/src/settings/typography'
 import { BREAKPOINTS } from '~/src/settings/breakpoints'
@@ -26,7 +27,50 @@ const ArticleHeaderMedia = styled('div')`
   }
 `
 
-export default ({ videoPath, images }) => {
+const HeroImages = styled('div')`
+  display: flex;
+  &,
+  div > & {
+    grid-column: article-full;
+  }
+`
+
+const Figure = styled('figure')`
+  margin: 0;
+  flex-basis: 50%;
+  text-align: center;
+`
+
+const a = keyframes`
+50% {
+    transform: translateY(-33.3%);
+}
+75% {
+    transform: translateY(0);
+}
+75.6% {
+    transform: translateY(0);
+}
+`
+
+const ImgHolder = styled('span')`
+  position: relative;
+  padding-top: 168.75%;
+  overflow: hidden;
+  display: block;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: none;
+    width: 100%;
+    animation: ${a} 12s 3s infinite;
+    animation-delay: ${props => (props.delay ? '4s' : null)};
+  }
+`
+
+export default ({ videoPath, heroImages, mediaPath }) => {
   return (
     <ArticleHeaderMedia>
       {videoPath && (
@@ -38,8 +82,18 @@ export default ({ videoPath, images }) => {
         />
       )}
       {!videoPath &&
-        images &&
-        images.map(img => <img src={require(img)} alt="" />)}
+        heroImages && (
+          <HeroImages>
+            {heroImages.map((img, index) => (
+              <Figure key={index}>
+                <ImgHolder delay={index !== 0}>
+                  <img src={require(`../../${mediaPath}${img.image}`)} alt="" />
+                </ImgHolder>
+                <Heading element={'figcaption'}>{img.caption}</Heading>
+              </Figure>
+            ))}
+          </HeroImages>
+        )}
     </ArticleHeaderMedia>
   )
 }
