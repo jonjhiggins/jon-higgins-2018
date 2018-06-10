@@ -59,6 +59,10 @@ const TransitionBlock = styled(`div`)`
   border: ${rem(2)} solid ${COLOURS.PRIMARY};
 `
 
+const Footer = styled('footer')`
+  margin-top: ${rem(BASELINE * 2)};
+`
+
 class LinkBlock extends React.Component {
   constructor() {
     super()
@@ -169,11 +173,11 @@ export default class Template extends React.Component {
                 })}
               </LinkBlocks>
               {this.props.footerCTA && (
-                <span>
+                <Footer>
                   <CTA to={this.props.footerCTA.link}>
                     {this.props.footerCTA.text}
                   </CTA>
-                </span>
+                </Footer>
               )}
             </ArticleContent>
           </Article>
