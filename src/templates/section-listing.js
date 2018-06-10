@@ -76,11 +76,11 @@ class LinkBlock extends React.Component {
     }
   }
   handleClick(e) {
-    //e.preventDefault()
-    navigateTo(url)
-    return
+    e.preventDefault()
     const element = e.currentTarget
     const url = e.currentTarget.getAttribute('href')
+    navigateTo(url)
+    return
 
     const { top, left, width, height } = element.getBoundingClientRect()
     this.setState({

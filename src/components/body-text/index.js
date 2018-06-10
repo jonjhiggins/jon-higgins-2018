@@ -16,7 +16,7 @@ const BodyText = styled('div')({
   li: {
     marginBottom: rem(BASELINE * 1),
   },
-  a: {
+  'a:not(.gatsby-resp-image-link)': {
     color: 'inherit',
     textDecoration: 'none',
     borderBottom: `${rem(2)} solid ${COLOURS.PRIMARY}`,
@@ -55,6 +55,9 @@ const BodyText = styled('div')({
   },
   'h5, h6': {
     ...interUIStyles[0],
+  },
+  '.gatsby-resp-image-link': {
+    margin: `${rem(BASELINE)} 0`,
   },
 })
 

@@ -21,7 +21,8 @@ I designed and established a clean, simple visual and interactive style that was
 
 ###### Rebrandable
 
-<img src="/assets/img/work-article-instiller-ui-rebrand.png" alt="" title="Screenshot of rebrandable UI"/>
+<img src="images/work-article-instiller-ui-rebrand.png" alt="" title="Screenshot of rebrandable UI"/>
+
 As the app is white label visual style is kept simple to fit with a wide range of brands.
 
 ###### Consistent
@@ -30,5 +31,6 @@ Grids and consistent navigational elements improve usability. Colour was reduced
 
 ###### Powerful
 
-<img src="/assets/img/work-article-instiller-ui-item.png" alt="" title="Screenshot of UI element"/>
+<img src="images/work-article-instiller-ui-item.png" alt="" title="Screenshot of UI element"/>
+
 UI widgets, such as javascript emulating a single page web-app improve user experience and reduce development time.
