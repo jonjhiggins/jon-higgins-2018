@@ -34,87 +34,72 @@ const activeNavLink = {
   border: `${rem(BORDER_WIDTH)} dashed ${COLOURS.PRIMARY}`,
 }
 
-const NavigationWrapper = styled('nav')({
-  [BREAKPOINTS.S_MAX]: {
-    transition: '400ms transform ease-out',
-    position: 'fixed',
-    boxSizing: 'border-box',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    maxWidth: '100vw',
-    maxHeight: '100vh',
-    display: 'flex',
-    alignItems: 'center',
-    backgroundColor: `${COLOURS.WHITE}`,
-    padding: `${rem(BASELINE * 3)} ${GRID_GUTTER_REM.S}`,
-    zIndex: `${Z_INDEX.NAV_OPEN}`,
-  },
-  [BREAKPOINTS.M_MIN]: {
-    position: 'relative',
-  },
-  '& > ul': {
-    listStyle: 'none',
-    margin: 0,
-    padding: 0,
-    flex: '0 1 100%',
-  },
-  '& li': {
-    margin: `0 0 ${rem(BASELINE)}`,
-    padding: 0,
-    height: `${rem(BASELINE * 3.5)}`,
-    transform: 'translateX(0)',
-
-    [BREAKPOINTS.M_MIN]: {
-      marginBottom: 0,
-    },
-
-    '& a': {
-      border: `${rem(2)} solid ${COLOURS.GREY}`,
+const NavigationWrapper = styled('nav')(
+  {
+    [BREAKPOINTS.S_MAX]: {
+      transition: '400ms transform ease-out',
+      position: 'fixed',
+      boxSizing: 'border-box',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      maxWidth: '100vw',
+      maxHeight: '100vh',
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'center',
-      height: '100%',
-      width: '100%',
-      color: 'inherit',
-      textDecoration: 'none',
-      transition: '400ms border-color ease, 400ms border-style ease',
-      boxSizing: 'border-box',
-      '&:hover': {
-        borderColor: `${COLOURS.PRIMARY}`,
+      backgroundColor: `${COLOURS.WHITE}`,
+      padding: `${rem(BASELINE * 3)} ${GRID_GUTTER_REM.S}`,
+      zIndex: `${Z_INDEX.NAV_OPEN}`,
+    },
+    [BREAKPOINTS.M_MIN]: {
+      position: 'relative',
+    },
+
+    '& > ul': {
+      listStyle: 'none',
+      margin: 0,
+      padding: 0,
+      flex: '0 1 100%',
+    },
+    '& li': {
+      margin: `0 0 ${rem(BASELINE)}`,
+      padding: 0,
+      height: `${rem(BASELINE * 3.5)}`,
+      transform: 'translateX(0)',
+
+      [BREAKPOINTS.M_MIN]: {
+        marginBottom: 0,
+      },
+
+      '& a': {
+        border: `${rem(2)} solid ${COLOURS.GREY}`,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100%',
+        width: '100%',
+        color: 'inherit',
+        textDecoration: 'none',
+        transition: '400ms border-color ease, 400ms border-style ease',
+        boxSizing: 'border-box',
+        '&:hover': {
+          borderColor: `${COLOURS.PRIMARY}`,
+        },
       },
     },
   },
-})
+  props => ({
+    [BREAKPOINTS.S_MAX]: {
+      transform: props.open ? 'translateX(0)' : 'translateX(-100%)',
+    },
+  })
+)
 
 class Navigation extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      mobile: true,
-    }
-  }
-  componentDidMount() {
-    const mediaQueryList = window.matchMedia(
-      BREAKPOINTS.M_MIN.replace('@media ', '')
-    )
-    mediaQueryList.addListener(this.handleBreakpointChange.bind(this))
-    this.handleBreakpointChange(mediaQueryList)
-  }
-  handleBreakpointChange(e) {
-    this.setState({ mobile: !e.matches })
-  }
   render() {
     return (
-      <NavigationWrapper
-        style={{
-          transform:
-            !this.props.open && this.state.mobile
-              ? 'translateX(-100%)'
-              : 'translateX(0)',
-        }}
-      >
+      <NavigationWrapper open={this.props.open}>
         <Grid element={'ul'} cols={3}>
           {links.map(({ name, link }, index) => (
             <li key={index}>
