@@ -11,6 +11,7 @@ import { BASELINE } from '~/src/settings/typography'
 import { rem } from '~/src/utils'
 import COLOURS from '~/src/settings/colours'
 import Z_INDEX from '~/src/settings/z-index'
+import ANIMATION from '~/src/settings/animation'
 
 const BORDER_WIDTH = 2
 
@@ -37,7 +38,7 @@ const activeNavLink = {
 const NavigationWrapper = styled('nav')(
   {
     [BREAKPOINTS.S_MAX]: {
-      transition: '400ms transform ease-out',
+      transition: `400ms transform ${ANIMATION.EASING}`,
       position: 'fixed',
       boxSizing: 'border-box',
       top: 0,
@@ -81,10 +82,15 @@ const NavigationWrapper = styled('nav')(
         width: '100%',
         color: 'inherit',
         textDecoration: 'none',
-        transition: '400ms border-color ease, 400ms border-style ease',
+        transition: `400ms border-color ${
+          ANIMATION.EASING_IN
+        }, 400ms border-style ${ANIMATION.EASING_IN}`,
         boxSizing: 'border-box',
         '&:hover': {
           borderColor: `${COLOURS.PRIMARY}`,
+          transition: `400ms border-color ${
+            ANIMATION.EASING_OUT
+          }, 400ms border-style ${ANIMATION.EASING_OUT}`,
         },
       },
     },
@@ -92,6 +98,9 @@ const NavigationWrapper = styled('nav')(
   props => ({
     [BREAKPOINTS.S_MAX]: {
       transform: props.open ? 'translateX(0)' : 'translateX(-100%)',
+      boxShadow: props.open
+        ? `0 ${rem(BASELINE * 3)} ${rem(BASELINE * 3)} ${COLOURS.SHADOW}`
+        : null,
     },
   })
 )
