@@ -25,11 +25,12 @@ export default function Template({ data, transition }) {
   const mediaPath = `data/${category}/images/`
   const videoPath =
     heroVideos && heroVideos.length ? `${mediaPath}${heroVideos[0]}` : null
+  const hasMedia = videoPath !== null || (heroImages && heroImages.length > 0)
   return (
     <PageWrapper transition={transition}>
       <HeadingBackground>{title}</HeadingBackground>
       <ArticleWrapper>
-        <Article hasMedia={videoPath || heroImages}>
+        <Article hasMedia={hasMedia}>
           <ArticleContent>
             {(videoPath || heroImages) && (
               <ArticleHeaderMedia

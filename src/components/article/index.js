@@ -44,7 +44,7 @@ const Article = styled('div')`
 
 Article.propTypes = {
   border: PropTypes.bool,
-  hasMedia: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  hasMedia: PropTypes.bool,
 }
 
 Article.defaultProps = {
