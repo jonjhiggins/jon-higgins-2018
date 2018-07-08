@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import styled from 'react-emotion'
+import { StaticQuery } from 'gatsby'
 
 // Polyfills
 import 'url-search-params-polyfill'
@@ -32,9 +33,9 @@ const Wrapper = styled('div')`
 `
 
 const Layout = ({ children, data, location }) => {
-  const search = location.search
-  const params = new URLSearchParams(search)
-  const grid = params.get('grid')
+  const search = location ? location.search : null
+  const params = search ? new URLSearchParams(search) : null
+  const grid = params ? params.get('grid') : false
   const hasGrid = grid === 'true' || grid === '1'
   return (
     <Wrapper>
@@ -55,26 +56,29 @@ const Layout = ({ children, data, location }) => {
         titleHTML={data.site.siteMetadata.titleHTML}
         navLinks={data.site.navLinks}
       />
-      {children()}
+      {children}
     </Wrapper>
   )
 }
 
 Layout.propTypes = {
-  children: PropTypes.func,
+  children: PropTypes.object,
   data: PropTypes.object,
   location: PropTypes.object,
 }
 
-export default Layout
-
-export const query = graphql`
-  query SiteTitleQuery {
-    site {
-      siteMetadata {
-        title
-        titleHTML
+export default props => (
+  <StaticQuery
+    query={graphql`
+      query SiteTitleQuery {
+        site {
+          siteMetadata {
+            title
+            titleHTML
+          }
+        }
       }
-    }
-  }
-`
+    `}
+    render={data => <Layout data={data} {...props} />}
+  />
+)

@@ -12,9 +12,15 @@ export default function Section({
     allMarkdownRemark: { edges: items },
   },
   transition,
+  location,
 }) {
   return (
-    <SectionTemplate items={items} heading={'Words'} transition={transition} />
+    <SectionTemplate
+      location={location}
+      items={items}
+      heading={'Words'}
+      transition={transition}
+    />
   )
 }
 

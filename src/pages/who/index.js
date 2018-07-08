@@ -15,9 +15,10 @@ export default function Section({
     },
   },
   transition,
+  location,
 }) {
   return (
-    <PageWrapper transition={transition} heading={title}>
+    <PageWrapper location={location} transition={transition} heading={title}>
       <div dangerouslySetInnerHTML={{ __html: html }} />
     </PageWrapper>
   )

@@ -2,6 +2,7 @@ import styled from 'react-emotion'
 import PropTypes from 'prop-types'
 import React from 'react'
 
+import Layout from '~/src/components/layout'
 import HeadingBackground from '~/src/components/heading-background'
 import { GRID_GUTTER_REM } from '~/src/settings/grid'
 import { BREAKPOINTS } from '~/src/settings/breakpoints'
@@ -14,14 +15,21 @@ const PageWrapperInner = styled('div')`
   }
 `
 
-export default function PageWrapper({ transition, children, heading }) {
+export default function PageWrapper({
+  transition,
+  children,
+  heading,
+  location,
+}) {
   return (
-    <div style={transition && transition.style}>
-      <PageWrapperInner>
-        {heading && <HeadingBackground>{heading}</HeadingBackground>}
-        {children}
-      </PageWrapperInner>
-    </div>
+    <Layout location={location}>
+      <div style={transition && transition.style}>
+        <PageWrapperInner>
+          {heading && <HeadingBackground>{heading}</HeadingBackground>}
+          {children}
+        </PageWrapperInner>
+      </div>
+    </Layout>
   )
 }
 
@@ -29,4 +37,5 @@ PageWrapper.propTypes = {
   transition: PropTypes.object,
   heading: PropTypes.string,
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  location: PropTypes.object,
 }

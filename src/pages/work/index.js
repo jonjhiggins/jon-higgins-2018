@@ -12,10 +12,12 @@ export default function Section({
     allMarkdownRemark: { edges: items },
   },
   transition,
+  location,
 }) {
   const itemsFiltered = items.filter(item => !item.node.frontmatter.archive)
   return (
     <SectionTemplate
+      location={location}
       items={itemsFiltered}
       heading={'Work'}
       transition={transition}

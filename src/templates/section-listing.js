@@ -152,7 +152,10 @@ export default class Template extends React.Component {
   }
   render() {
     return (
-      <PageWrapper transition={this.props.transition}>
+      <PageWrapper
+        location={this.props.location}
+        transition={this.props.transition}
+      >
         <HeadingBackground>{this.props.heading}</HeadingBackground>
         <ArticleWrapper>
           <Article border={false} ref="article">

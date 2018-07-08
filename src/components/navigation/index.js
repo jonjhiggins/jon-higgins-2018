@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'react-emotion'
 import PropTypes from 'prop-types'
-import Link from 'gatsby-link'
+import { Link } from 'gatsby'
 
 import Heading from '~/src/components/heading'
 import Grid from '~/src/components/grid'
