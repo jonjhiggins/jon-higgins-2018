@@ -13,8 +13,6 @@ import COLOURS from '~/src/settings/colours'
 import Z_INDEX from '~/src/settings/z-index'
 import ANIMATION from '~/src/settings/animation'
 
-const BORDER_WIDTH = 2
-
 const links = [
   {
     name: 'Work',
@@ -32,7 +30,6 @@ const links = [
 
 const activeNavLink = {
   fontWeight: 'bold',
-  border: `${rem(BORDER_WIDTH)} dashed ${COLOURS.PRIMARY}`,
 }
 
 const NavigationWrapper = styled('nav')(
@@ -74,24 +71,14 @@ const NavigationWrapper = styled('nav')(
       },
 
       '& a': {
-        border: `${rem(2)} solid ${COLOURS.GREY}`,
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         height: '100%',
         width: '100%',
         color: 'inherit',
         textDecoration: 'none',
-        transition: `400ms border-color ${
-          ANIMATION.EASING_IN
-        }, 400ms border-style ${ANIMATION.EASING_IN}`,
         boxSizing: 'border-box',
-        '&:hover': {
-          borderColor: `${COLOURS.PRIMARY}`,
-          transition: `400ms border-color ${
-            ANIMATION.EASING_OUT
-          }, 400ms border-style ${ANIMATION.EASING_OUT}`,
-        },
       },
     },
   },

@@ -20,13 +20,14 @@ import Z_INDEX from '~/src/settings/z-index'
 const BORDER_WIDTH = 2
 
 const Header = styled('header')`
-  margin: 0 ${GRID_GUTTER_REM.S};
-  padding: ${rem(BASELINE * 3)} 0;
+  padding: ${rem(BASELINE * 3)} ${GRID_GUTTER_REM.S} ${rem(BASELINE)};
+  margin-bottom: ${rem(BASELINE * 2)};
+  border-bottom: ${rem(1)} solid ${COLOURS.GREY};
 
   ${BREAKPOINTS.M_MIN} {
-    margin: 0 ${GRID_GUTTER_REM.M};
+    padding: ${rem(BASELINE * 3)} ${GRID_GUTTER_REM.M} ${rem(BASELINE)};
+    margin-bottom: ${rem(BASELINE * 2)};
     min-height: ${rem(BASELINE * 4)};
-    padding-bottom: ${rem(BASELINE * 4)};
   }
 `
 
@@ -37,12 +38,15 @@ const DescriptionLi = styled('li')`
 `
 
 const Description = styled('div')`
-  border-top: ${rem(BORDER_WIDTH)} solid ${COLOURS.GREY};
-  padding-top: ${rem(BASELINE - BORDER_WIDTH)};
-
   & a {
     text-decoration: none;
     color: inherit;
+
+    & span {
+      display: block;
+      text-transform: none;
+      opacity: 0.5;
+    }
   }
 `
 

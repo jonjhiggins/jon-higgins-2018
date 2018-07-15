@@ -24,6 +24,7 @@ const Heading = ({
   sizeM,
   light,
   colour,
+  uppercase,
 }) => {
   const sizeIndex = size - 1
   const sizeSIndex = typeof sizeS !== 'undefined' ? sizeS - 1 : null
@@ -39,6 +40,7 @@ const Heading = ({
     marginBottom: rem((marginBottomS || marginBottom) * BASELINE),
     position: 'relative',
     fontWeight: light ? 'normal' : null,
+    textTransform: uppercase || null,
     '& > span': {
       fontWeight: 'normal',
     },
@@ -90,6 +92,7 @@ Heading.propTypes = {
   html: PropTypes.string,
   light: PropTypes.bool,
   colour: PropTypes.string,
+  uppercase: PropTypes.oneOf(['uppercase', 'lowercase']),
 }
 
 export default Heading
