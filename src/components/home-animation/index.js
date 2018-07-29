@@ -34,7 +34,7 @@ const HomeAnimationWrapper = styled('div')`
   transform: translateY(-${BASELINE_REM * 1}rem);
 
   ${BREAKPOINTS.M_MIN} {
-    transform: translateY(${BASELINE_REM * 2}rem) l;
+    transform: translateY(-${BASELINE_REM * 5}rem);
   }
 
   & ul {
@@ -49,14 +49,18 @@ const BlockList = styled('ul')`
   display: grid;
   grid-gap: ${GRID_GUTTER_REM.S};
 
-  ${BREAKPOINTS.M_MIN} {
-    grid-template-columns: 1fr 1fr 1fr;
+  ${BREAKPOINTS.L_MIN} {
+    grid-template-columns: repeat(5, 1fr);
     grid-gap: ${GRID_GUTTER_REM.M};
   }
 `
 
 const BlockListItem = styled('li')`
   perspective: ${PERSPECTIVE}rem;
+
+  ${BREAKPOINTS.L_MIN} {
+    grid-column: ${props => (props.index !== 0 ? 'span 2' : null)};
+  }
 `
 
 const Cube = styled('ul')`
@@ -108,7 +112,7 @@ export default class HomeAnimation extends React.Component {
       <HomeAnimationWrapper>
         <BlockList>
           {this.blocks.map((blockItems, index) => (
-            <BlockListItem key={index}>
+            <BlockListItem key={index} index={index}>
               <Cube>
                 <CubeFace side={true} left={true} />
                 <CubeFace side={true} right={true} />
