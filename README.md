@@ -1,26 +1,27 @@
 # jon-higgins-2018
+
 Portfolio site build using React/GraphQL-based [Gatsby](https://www.gatsbyjs.org/), with [Emotion.js](https://emotion.sh/) for styles.
 
 ## Install
 
 ```sh
-yarn install
+npm run install
 ```
 
 ## Develop
 
 ```sh
-yarn develop
+npm run develop
 ```
 
 ## Build
 
 ```sh
-yarn build
+npm run build
 ```
 
 ## Deploy
 
 ```sh
-yarn deploy
+npm run deploy
 ```

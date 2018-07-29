@@ -27,7 +27,9 @@
     "react-transition-group": "^2.3.1",
     "url-search-params-polyfill": "^4.0.0"
   },
-  "keywords": ["gatsby"],
+  "keywords": [
+    "gatsby"
+  ],
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
@@ -40,8 +42,14 @@
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.{js,json}": ["prettier --write", "git add"],
-    "*.{css,md}": ["prettier --write", "git add"]
+    "*.{js,json}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.{css,md}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "devDependencies": {
     "babel-plugin-root-import": "^5.1.0",
