@@ -20,7 +20,7 @@ import Z_INDEX from '~/src/settings/z-index'
 const BORDER_WIDTH = 2
 
 const Header = styled('header')`
-  padding: ${rem(BASELINE * 3)} ${GRID_GUTTER_REM.S} ${rem(BASELINE)};
+  padding: ${rem(BASELINE * 1)} ${GRID_GUTTER_REM.S} ${rem(BASELINE / 2)};
   margin-bottom: ${rem(BASELINE * 2)};
   border-bottom: ${rem(1)} solid ${COLOURS.GREY};
 
@@ -32,6 +32,9 @@ const Header = styled('header')`
 `
 
 const DescriptionLi = styled('li')`
+  ${BREAKPOINTS.S_MAX} {
+    margin-right: 5rem;
+  }
   ${BREAKPOINTS.M_MIN} {
     grid-column: 1 / 3;
   }
@@ -55,7 +58,7 @@ const NavToggleButton = styled('button')({
   border: 'none',
   position: 'absolute',
   top: `${BASELINE_REM}rem`,
-  left: GRID_GUTTER_REM.S,
+  right: GRID_GUTTER_REM.S,
   backgroundColor: 'transparent',
   zIndex: `${Z_INDEX.NAV_OPEN + 1}`,
   [BREAKPOINTS.M_MIN]: {
@@ -79,7 +82,6 @@ const BurgerIcons = styled('span')`
     opacity: 0.3;
     position: absolute;
     left: 0;
-    transition: transform 400ms ease;
   }
   span {
     top: 50%;
@@ -142,7 +144,7 @@ class SiteHeader extends React.Component {
               <Link to="/">
                 <Heading
                   element={'h1'}
-                  marginBottom={0.5}
+                  marginBottomL={0.5}
                   size={1}
                   html={this.props.titleHTML}
                 />

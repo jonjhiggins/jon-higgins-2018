@@ -84,7 +84,7 @@ const NavigationWrapper = styled('nav')(
   },
   props => ({
     [BREAKPOINTS.S_MAX]: {
-      transform: props.open ? 'translateX(0)' : 'translateX(-100%)',
+      transform: props.open ? 'translateX(0)' : 'translateX(100%)',
       boxShadow: props.open
         ? `0 ${rem(BASELINE * 3)} ${rem(BASELINE * 3)} ${COLOURS.SHADOW}`
         : null,
