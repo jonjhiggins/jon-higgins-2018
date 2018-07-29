@@ -7,11 +7,20 @@ import HeadingBackground from '~/src/components/heading-background'
 import { GRID_GUTTER_REM } from '~/src/settings/grid'
 import { BREAKPOINTS } from '~/src/settings/breakpoints'
 
+const PageWrapperOuter = styled('div')`
+  flex: 1 0 100%;
+  align-items: center;
+  display: flex;
+`
+
 const PageWrapperInner = styled('div')`
-  margin: 0 ${GRID_GUTTER_REM.S};
+  margin-left: ${GRID_GUTTER_REM.S};
+  margin-right: ${GRID_GUTTER_REM.S};
+  flex-basis: 100%;
 
   ${BREAKPOINTS.M_MIN} {
-    margin: 0 ${GRID_GUTTER_REM.M};
+    margin-left: ${GRID_GUTTER_REM.M};
+    margin-right: ${GRID_GUTTER_REM.M};
   }
 `
 
@@ -23,12 +32,12 @@ export default function PageWrapper({
 }) {
   return (
     <Layout location={location}>
-      <div style={transition && transition.style}>
+      <PageWrapperOuter style={transition && transition.style}>
         <PageWrapperInner>
           {heading && <HeadingBackground>{heading}</HeadingBackground>}
           {children}
         </PageWrapperInner>
-      </div>
+      </PageWrapperOuter>
     </Layout>
   )
 }

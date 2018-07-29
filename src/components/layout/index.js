@@ -30,6 +30,9 @@ const Wrapper = styled('div')`
   box-shadow: 0 ${rem(BASELINE * 3)} ${rem(BASELINE * 3)} ${COLOURS.SHADOW};
   overflow: hidden; /* stop box shadow showing at bottom of element  */
   min-height: 100vh;
+  display: flex;
+  flex-basis: 100%;
+  flex-direction: column;
 `
 
 const Layout = ({ children, data, location }) => {
