@@ -39,22 +39,26 @@ export default function Template({ data, transition }) {
                 heroImages={heroImages}
               />
             )}
-            <Heading
-              element={'time'}
-              marginBottom={2}
-              colour={COLOURS.GREY_GREEN}
-            >
-              {date}
-            </Heading>
-            <Heading
-              element={'h2'}
-              sizeS={2}
-              sizeM={3}
-              marginBottomS={3}
-              marginBottomM={6}
-            >
-              {description}
-            </Heading>
+            {date && (
+              <Heading
+                element={'time'}
+                marginBottom={2}
+                colour={COLOURS.GREY_GREEN}
+              >
+                {date}
+              </Heading>
+            )}
+            {description && (
+              <Heading
+                element={'h2'}
+                sizeS={2}
+                sizeM={3}
+                marginBottomS={3}
+                marginBottomM={6}
+              >
+                {description}
+              </Heading>
+            )}
             <BodyText dangerouslySetInnerHTML={{ __html: html }} />
           </ArticleContent>
         </Article>

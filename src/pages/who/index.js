@@ -1,36 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import PageWrapper from '~/src/components/page-wrapper'
+import PostTemplate from '~/src/templates/post'
 
 /**
- * Section listing page for words articles
+ * Page for "who"
  * @param {object} data [description]
  */
-export default function Section({
-  data: {
-    markdownRemark: {
-      html,
-      frontmatter: { title },
-    },
-  },
-  transition,
-  location,
-}) {
-  return (
-    <PageWrapper location={location} transition={transition} heading={title}>
-      <div dangerouslySetInnerHTML={{ __html: html }} />
-    </PageWrapper>
-  )
-}
-
-Section.propTypes = {
-  data: PropTypes.shape({
-    allMarkdownRemark: PropTypes.shape({
-      edges: PropTypes.array,
-    }),
-  }),
-  transition: PropTypes.object,
+export default function Section({ data, transition, location }) {
+  return <PostTemplate data={data} transition={transition} />
 }
 
 export const pageQuery = graphql`

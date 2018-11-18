@@ -8,6 +8,7 @@ You can get hold of me via [email](mailto:jon@jonhiggins.co.uk), [Twitter](https
 
 ### Personal
 
-* I like to [run](https://www.strava.com/athletes/13456097), a lot.
-* I'm always listening to [music](http://www.last.fm/user/jhig_uk), it's mostly electronic or BBC 6 Music.
-* All my money goes on travelling: I've made it to 5 continents, 2 to go!
+- Injuries-permitting, I enjoy [running](https://www.strava.com/athletes/13456097), cycling to work and failing to swim with proper techique.
+- I bloody love [music](http://www.last.fm/user/jhig_uk).
+- Also keen on [travelling](https://www.instagram.com/jonjhiggins/), camping, mooching about and general exploring.
+- My spirit animals are [bears](https://placebear.com/) and [highland cows](https://www.facebook.com/pages/category/Pet/Buckley-the-Highland-Cow-419363498434353/)
