@@ -59,6 +59,9 @@ const BodyText = styled('div')({
   '.gatsby-resp-image-link': {
     margin: `${rem(BASELINE)} 0`,
   },
+  code: {
+    whiteSpace: 'pre-wrap',
+  },
 })
 
 export default BodyText
