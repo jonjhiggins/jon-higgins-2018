@@ -5,6 +5,7 @@
   "author": "Jon Higgins <jon@jonhiggins.co.uk>",
   "dependencies": {
     "animejs": "^2.2.0",
+    "babel-preset-gatsby": "^0.1.4",
     "emotion": "^9.1.2",
     "emotion-server": "^9.1.2",
     "eslint-config-prettier": "^2.9.0",

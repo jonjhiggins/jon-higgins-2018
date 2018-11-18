@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
+import { graphql } from 'gatsby'
 import PageWrapper from '~/src/components/page-wrapper'
 import ArticleWrapper from '~/src/components/article-wrapper'
 import Article from '~/src/components/article'

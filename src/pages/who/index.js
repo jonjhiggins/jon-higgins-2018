@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
+import { graphql } from 'gatsby'
 import PageWrapper from '~/src/components/page-wrapper'
 
 /**
@@ -35,7 +35,7 @@ Section.propTypes = {
 
 export const pageQuery = graphql`
   query GetWhoPost {
-    markdownRemark(fileAbsolutePath: { eq: "src/data/who/who.md" }) {
+    markdownRemark(fileAbsolutePath: { regex: "/src/data/who/who.md/" }) {
       html
       frontmatter {
         title

@@ -1,26 +1,40 @@
 const path = require('path')
 const getSitePath = require('./src/utils/getSitePath')
-const generateBabelConfig = require('gatsby/dist/utils/babel-config')
 
-exports.modifyWebpackConfig = ({ config, stage }) => {
-  const program = {
-    directory: __dirname,
-    browserslist: ['defaults'],
-  }
+exports.onCreateWebpackConfig = ({ actions, loaders, getConfig }) => {
+  const config = getConfig()
 
-  return generateBabelConfig(program, stage).then(babelConfig => {
-    config.removeLoader('js').loader('js', {
+  config.module.rules = [
+    // Omit the default rule where test === '\.jsx?$'
+    ...config.module.rules.filter(
+      rule => String(rule.test) !== String(/\.jsx?$/)
+    ),
+
+    // Recreate it with custom exclude filter
+    {
+      // Called without any arguments, `loaders.js` will return an
+      // object like:
+      // {
+      //   options: undefined,
+      //   loader: '/path/to/node_modules/gatsby/dist/utils/babel-loader.js',
+      // }
+      // Unless you're replacing Babel with a different transpiler, you probably
+      // want this so that Gatsby will apply its required Babel
+      // presets/plugins.  This will also merge in your configuration from
+      // `babel.config.js`.
+      ...loaders.js(),
+
       test: /\.jsx?$/,
-      exclude: modulePath => {
-        return (
-          /node_modules/.test(modulePath) &&
-          !/node_modules\/hex-rgb/.test(modulePath) // hex-rgb needs to go through babel https://github.com/sindresorhus/rgb-hex/issues/4
-        )
-      },
-      loader: 'babel',
-      query: babelConfig,
-    })
-  })
+
+      // Exclude all node_modules from transpilation, except for 'swiper' and 'dom7'
+      exclude: modulePath =>
+        /node_modules/.test(modulePath) &&
+        !/node_modules\/(hex-rgb)/.test(modulePath),
+    },
+  ]
+
+  // This will completely replace the webpack config with the modified object.
+  actions.replaceWebpackConfig(config)
 }
 
 exports.createPages = ({ actions, graphql }) => {

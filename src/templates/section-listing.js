@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import styled from 'react-emotion'
 import PropTypes from 'prop-types'
+import { graphql } from 'gatsby'
 import { navigateTo } from 'gatsby-link'
 import hexRgb from 'hex-rgb'
 
