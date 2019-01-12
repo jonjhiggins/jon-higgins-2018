@@ -11,7 +11,6 @@ export default function Section({
   data: {
     allMarkdownRemark: { edges: items },
   },
-  transition,
   location,
 }) {
   const itemsFiltered = items.filter(item => !item.node.frontmatter.archive)
@@ -20,7 +19,6 @@ export default function Section({
       location={location}
       items={itemsFiltered}
       heading={'Work'}
-      transition={transition}
       footerCTA={{
         text: 'Archive',
         link: '/work/archive',
@@ -35,7 +33,6 @@ Section.propTypes = {
       edges: PropTypes.array,
     }),
   }),
-  transition: PropTypes.object,
 }
 
 export const pageQuery = graphql`

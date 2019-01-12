@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import styled from 'react-emotion'
 import { StaticQuery, graphql } from 'gatsby'
+import PageTransition from 'gatsby-plugin-page-transitions'
 
 // Polyfills
 import 'url-search-params-polyfill'
 
 import BaselineGrid from '~/src/components/baseline-grid'
 // eslint-disable-next-line no-unused-vars
-import Typography from '~/src/components/typography'
 import SiteHeader from '~/src/components/site-header'
 import { MAX_WIDTH_REM } from '~/src/settings/max-width'
 import { BASELINE } from '~/src/settings/typography'
@@ -41,26 +41,28 @@ const Layout = ({ children, data, location }) => {
   const grid = params ? params.get('grid') : false
   const hasGrid = grid === 'true' || grid === '1'
   return (
-    <Wrapper>
-      <Helmet
-        title={data.site.siteMetadata.title}
-        meta={[
-          { name: 'description', content: '@TODO' },
-          { name: 'keywords', content: '@TODO' },
-        ]}
-      >
-        {/* <link rel="preload" href={interUI} as="font" type="font/woff2" />
+    <PageTransition>
+      <Wrapper>
+        <Helmet
+          title={data.site.siteMetadata.title}
+          meta={[
+            { name: 'description', content: '@TODO' },
+            { name: 'keywords', content: '@TODO' },
+          ]}
+        >
+          {/* <link rel="preload" href={interUI} as="font" type="font/woff2" />
         <link rel="preload" href={interUIBold} as="font" type="font/woff2" />
         <link rel="preload" href={vollkorn} as="font" type="font/woff2" />
         <link rel="preload" href={vollkornBold} as="font" type="font/woff2" /> */}
-      </Helmet>
-      {hasGrid && <BaselineGrid />}
-      <SiteHeader
-        titleHTML={data.site.siteMetadata.titleHTML}
-        navLinks={data.site.navLinks}
-      />
-      {children}
-    </Wrapper>
+        </Helmet>
+        {hasGrid && <BaselineGrid />}
+        <SiteHeader
+          titleHTML={data.site.siteMetadata.titleHTML}
+          navLinks={data.site.navLinks}
+        />
+        {children}
+      </Wrapper>
+    </PageTransition>
   )
 }
 

@@ -24,15 +24,10 @@ const PageWrapperInner = styled('div')`
   }
 `
 
-export default function PageWrapper({
-  transition,
-  children,
-  heading,
-  location,
-}) {
+export default function PageWrapper({ children, heading, location }) {
   return (
     <Layout location={location}>
-      <PageWrapperOuter style={transition && transition.style}>
+      <PageWrapperOuter>
         <PageWrapperInner>
           {heading && <HeadingBackground>{heading}</HeadingBackground>}
           {children}
@@ -43,7 +38,6 @@ export default function PageWrapper({
 }
 
 PageWrapper.propTypes = {
-  transition: PropTypes.object,
   heading: PropTypes.string,
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   location: PropTypes.object,

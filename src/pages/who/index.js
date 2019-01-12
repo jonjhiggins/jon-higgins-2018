@@ -7,8 +7,8 @@ import PostTemplate from '~/src/templates/post'
  * Page for "who"
  * @param {object} data [description]
  */
-export default function Section({ data, transition, location }) {
-  return <PostTemplate data={data} transition={transition} />
+export default function Section({ data, location }) {
+  return <PostTemplate data={data} />
 }
 
 export const pageQuery = graphql`

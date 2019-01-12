@@ -153,10 +153,7 @@ export default class Template extends React.Component {
   }
   render() {
     return (
-      <PageWrapper
-        location={this.props.location}
-        transition={this.props.transition}
-      >
+      <PageWrapper location={this.props.location}>
         <HeadingBackground>{this.props.heading}</HeadingBackground>
         <ArticleWrapper>
           <Article border={false} ref="article">
@@ -192,7 +189,6 @@ export default class Template extends React.Component {
 }
 
 Template.propTypes = {
-  transition: PropTypes.object,
   data: PropTypes.object,
   items: PropTypes.arrayOf(PropTypes.object),
   heading: PropTypes.string,

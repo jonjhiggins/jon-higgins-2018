@@ -11,6 +11,7 @@
     "eslint-config-prettier": "^2.9.0",
     "gatsby": "next",
     "gatsby-plugin-emotion": "next",
+    "gatsby-plugin-page-transitions": "^1.0.7",
     "gatsby-plugin-react-helmet": "next",
     "gatsby-plugin-sharp": "next",
     "gatsby-remark-copy-linked-files": "next",

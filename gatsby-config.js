@@ -9,6 +9,12 @@ module.exports = {
     'gatsby-plugin-emotion',
     `gatsby-transformer-yaml`,
     {
+      resolve: 'gatsby-plugin-page-transitions',
+      options: {
+        transitionTime: 5000,
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `./src/data/`,

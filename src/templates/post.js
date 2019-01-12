@@ -11,7 +11,7 @@ import HeadingBackground from '~/src/components/heading-background'
 import Heading from '~/src/components/heading'
 import COLOURS from '~/src/settings/colours'
 
-export default function Template({ data, transition }) {
+export default function Template({ data }) {
   const { markdownRemark } = data // data.markdownRemark holds our post data
   const { frontmatter, html } = markdownRemark
   const {
@@ -27,7 +27,7 @@ export default function Template({ data, transition }) {
     heroVideos && heroVideos.length ? `${mediaPath}${heroVideos[0]}` : null
   const hasMedia = videoPath !== null || (heroImages && heroImages.length > 0)
   return (
-    <PageWrapper transition={transition}>
+    <PageWrapper>
       <HeadingBackground>{title}</HeadingBackground>
       <ArticleWrapper>
         <Article hasMedia={hasMedia}>
@@ -68,7 +68,6 @@ export default function Template({ data, transition }) {
 }
 
 Template.propTypes = {
-  transition: PropTypes.object,
   data: PropTypes.object,
 }
 
