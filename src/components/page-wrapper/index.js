@@ -8,19 +8,20 @@ import { GRID_GUTTER_REM } from '~/src/settings/grid'
 import { BREAKPOINTS } from '~/src/settings/breakpoints'
 
 const PageWrapperOuter = styled('div')`
-  flex: 1 0 100%;
-  align-items: center;
+  flex: 1;
   display: flex;
+  flex-direction: column;
 `
 
 const PageWrapperInner = styled('div')`
   margin-left: ${GRID_GUTTER_REM.S};
   margin-right: ${GRID_GUTTER_REM.S};
-  flex-basis: 100%;
+  width: calc(100% - (${GRID_GUTTER_REM.S} * 2));
 
   ${BREAKPOINTS.M_MIN} {
     margin-left: ${GRID_GUTTER_REM.M};
     margin-right: ${GRID_GUTTER_REM.M};
+    width: calc(100% - (${GRID_GUTTER_REM.M} * 2));
   }
 `
 

@@ -44,10 +44,17 @@ injectGlobal`
 
   html {
     font-size: ${BODY_FONT_SIZE}px;
+    height: 100%;
   }
 
   body {
     margin: 0;
-    ${vollkornStyles[0]}
+    ${vollkornStyles[0]};
+    height: 100%;
+  }
+
+  #___gatsby,
+  #___gatsby > * {
+    height: 100%;
   }
 `
